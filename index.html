@@ -203,6 +203,127 @@
     </div>
 </section>
 
+<section id="itemSection" class="d-flex flex-column align-items-center pt-3 pb-4">
+    <!-- Section Title -->
+    <div class="section-title d-flex align-items-center mb-3" style="max-width: 940px; width: 100%;">
+        <img src="img/item-icon.png" alt="Item Logo" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
+        <h1 class="mb-0">Item Management</h1>
+    </div>
+
+    <!-- Card -->
+    <div class="card shadow" style="max-width: 940px; width: 100%;">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Item Information</h5>
+        </div>
+        <div class="card-body">
+            <!-- Navbar (Search + Buttons) -->
+            <nav class="navbar bg-light px-3 py-2 rounded mb-4">
+                <div class="container-fluid flex-wrap justify-content-between align-items-center">
+                    <!-- Search -->
+                    <div class="d-flex align-items-center mb-2 mb-md-0">
+                        <h5 class="me-3 mb-0">Item Search:</h5>
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search by code or name" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">
+                                <i class="bi bi-search"></i> Search
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-flex gap-2 mt-2 mt-md-0">
+                        <button type="button" class="btn btn-success">
+                            <i class="bi bi-arrow-clockwise"></i> Update
+                        </button>
+                        <button type="button" class="btn btn-dark">
+                            <i class="bi bi-arrow-counterclockwise"></i> Reset
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Delete
+                        </button>
+                        <button type="button" class="btn btn-info text-white">
+                            <i class="bi bi-info-circle"></i> Info
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Form -->
+            <form class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <label for="itemCode" class="form-label fw-bold">Item Code</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
+                        <input type="text" class="form-control" id="itemCode" placeholder="Auto-generated" readonly>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <label for="itemName" class="form-label fw-bold">Item Name</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-box"></i></span>
+                        <input type="text" class="form-control" id="itemName" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="itemQuantity" class="form-label fw-bold">Quantity in Stock</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-123"></i></span>
+                        <input type="number" min="0" class="form-control" id="itemQuantity" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="itemPrice" class="form-label fw-bold">Unit Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+                        <input type="number" step="0.01" min="0" class="form-control" id="itemPrice" required>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-end gap-2 mt-4">
+                    <button class="btn btn-secondary" type="reset">Clear</button>
+                    <button class="btn btn-success" type="submit">
+                        <i class="bi bi-save"></i> Save Item
+                    </button>
+                </div>
+            </form>
+
+            <!-- Table -->
+            <div class="table-responsive">
+                <h5 class="card-title mb-3">Item Inventory</h5>
+                <table class="table table-striped table-hover border">
+                    <thead class="table-success">
+                    <tr>
+                        <th scope="col">Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">I001</th>
+                        <td>Laptop</td>
+                        <td>15</td>
+                        <td>$899.99</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">I002</th>
+                        <td>T-Shirt</td>
+                        <td>50</td>
+                        <td>$19.99</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">I003</th>
+                        <td>Coffee Maker</td>
+                        <td>8</td>
+                        <td>$59.99</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
 <script src="Lib/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
