@@ -1,3 +1,5 @@
+/*Home Section*/
+
 #homeSection{
     display: flex;
     align-items: center;
@@ -7,11 +9,13 @@
     height: 100vh;
 }
 #count-section .card {
+    background-color: #8af38a;
     transition: transform 0.3s ease;
 }
 #count-section .card:hover {
     transform: translateY(-5px);
 }
+/*Order*/
 #customerSection{
     border:  3px solid black;
     display: flex;
