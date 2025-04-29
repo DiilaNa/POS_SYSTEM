@@ -365,17 +365,22 @@
                 </div>
                 <div class="card-body">
                     <form id="itemForm">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Item Code</label>
-                            <input type="text" class="form-control" id="itemCode1" placeholder="Enter item code">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Item Name</label>
-                            <input type="text" class="form-control" id="itemName1">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Unit Price</label>
-                            <input type="number" step="0.01" class="form-control" id="unitPrice">
+                            <div class="dropdown" id="itemIdDropDown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Load Item Ids
+                                </button>
+                                <label class="form-label">Choose an Item</label>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" ></a></li>
+                                    <li><a class="dropdown-item" ></a></li>
+                                    <li><a class="dropdown-item" ></a></li>
+                                </ul>
+                            </div>
+                        <div id="loadOrderIdInOrder">
+                            <label class="form-label">load order id</label>
+                            <label class="form-label">load order name</label>
+                            <label class="form-label">load customer address</label>
+                            <label class="form-label">load customer tel</label>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Quantity</label>

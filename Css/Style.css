@@ -22,3 +22,20 @@
     margin-bottom: 20px;
     font-size: 15px;
 }
+#itemIdDropDown{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+
+}
+
+#loadOrderIdInOrder{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 2px;
+    margin-top: 45px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
