@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="Css/Style.css">
 </head>
 <body>
+
 <section id="headerSection-container">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="#">
                 <img src="img/Colorful%20Modern%20Infinity%20Creative%20Studio%20Logo.jpg" alt="Logo" width="80" height="54" class="d-inline-block align-text-top me-2">
-               ABC POS SYSTEM
+                ABC POS SYSTEM
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,7 +31,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                           Others
+                            Others
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#customer-section">Customers</a></li>
@@ -55,28 +56,64 @@
     </nav>
 </section>
 
-<section id="homeSection" class="d-flex flex-column align-items-center py-5" style="min-height: 80vh;">
-    <!-- Section Title Above Card -->
-    <div class="section-title d-flex align-items-center mb-3" style="max-width: 940px; width: 100%;">
-        <img src="img/signup.png" alt="Logo" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
-        <h1 class="mb-0">Home</h1>
-    </div>
 
-    <!-- Card section -->
-    <div class="card mb-3" style="max-width: 940px; width: 100%; height: 400px;">
-        <div class="row g-0 h-100">
-            <div class="col-md-4">
-                <img src="img/Colorful%20Modern%20Infinity%20Creative%20Studio%20Logo.jpg" class="img-fluid rounded-start h-100 w-100 object-fit-cover" alt="...">
+<section id="homeSection">
+    <div class="d-flex flex-column align-items-center py-5" style="min-height: 80vh;">
+        <!-- Title -->
+        <div class="section-title d-flex align-items-center mb-4" style="max-width: 940px; width: 100%;">
+            <img src="img/signup.png" alt="Logo" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
+            <h1 class="mb-0">Dashboard Overview</h1>
+        </div>
+
+        <!-- Welcome Card -->
+        <div class="card mb-4 shadow" style="max-width: 940px; width: 100%; height: 400px;">
+            <div class="row g-0 h-100">
+                <div class="col-md-4">
+                    <img src="img/welcome.jpg" class="img-fluid rounded-start h-100 w-100 object-fit-cover" alt="Welcome Image">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body d-flex flex-column justify-content-center h-100">
+                        <h5 class="card-title">Welcome!</h5>
+                        <p class="card-text">Here's a quick look at the number of customers, orders, and items in the system.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-8">
-                <div class="card-body d-flex flex-column justify-content-center h-100">
-                    <h5 class="card-title">Welcome</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+
+        <!-- Count Cards -->
+        <div class="d-flex gap-4 flex-wrap justify-content-center" id="count-section">
+            <!-- Customers -->
+            <div class="card text-center shadow" style="width: 18rem;">
+                <img src="img/customers.png" class="card-img-top" alt="Customers">
+                <div class="card-body">
+                    <h5 class="card-title">Customers</h5>
+                    <label class="card-text">123</label>
+                </div>
+            </div>
+
+            <!-- Orders -->
+            <div class="card text-center shadow" style="width: 18rem;">
+                <img src="img/orders.png" class="card-img-top" alt="Orders">
+                <div class="card-body">
+                    <h5 class="card-title">Orders</h5>
+                    <label class="card-text">89</label>
+                </div>
+            </div>
+
+            <!-- Items -->
+            <div class="card text-center shadow" style="width: 18rem;">
+                <img src="img/items.png" class="card-img-top" alt="Items">
+                <div class="card-body">
+                    <h5 class="card-title">Items</h5>
+                    <label class="card-text">342</label>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
+
 
 <section id="customerSection" class="d-flex flex-column align-items-center pt-3 pb-4">
     <!-- Section Title -->
@@ -198,6 +235,8 @@
         </div>
     </div>
 </section>
+
+
 
 <section id="itemSection" class="d-flex flex-column align-items-center pt-3 pb-4">
     <!-- Section Title -->

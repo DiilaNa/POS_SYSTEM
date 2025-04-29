@@ -6,6 +6,12 @@
     width: 100%;
     height: 100vh;
 }
+#count-section .card {
+    transition: transform 0.3s ease;
+}
+#count-section .card:hover {
+    transform: translateY(-5px);
+}
 #customerSection{
     border:  3px solid black;
     display: flex;
@@ -38,4 +44,8 @@
     margin-bottom: 20px;
     font-size: 15px;
     font-weight: bold;
+}
+.card-img-top{
+    width: 100px;
+    height: 100px;
 }
