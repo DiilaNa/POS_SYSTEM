@@ -170,7 +170,6 @@
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Address</th>
-                        <th scope="col">Salary</th>
                         <th scope="col">Phone</th>
                     </tr>
                     </thead>
@@ -179,21 +178,18 @@
                         <th scope="row">C001</th>
                         <td>John Doe</td>
                         <td>123 Main St</td>
-                        <td>$50,000</td>
                         <td>555-1234</td>
                     </tr>
                     <tr>
                         <th scope="row">C002</th>
                         <td>Jane Smith</td>
                         <td>456 Oak Ave</td>
-                        <td>$65,000</td>
                         <td>555-5678</td>
                     </tr>
                     <tr>
                         <th scope="row">C003</th>
                         <td>Robert Johnson</td>
                         <td>789 Pine St</td>
-                        <td>$45,000</td>
                         <td>555-9012</td>
                     </tr>
                     </tbody>
@@ -323,6 +319,129 @@
         </div>
     </div>
 </section>
+
+<section id="orderSection" class="container pt-4">
+    <!-- Section Title -->
+    <div class="d-flex align-items-center mb-4">
+        <img src="img/signup.png" alt="Logo" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
+        <h1 class="mb-0">Order Management</h1>
+    </div>
+
+    <!-- Row for Form 1 and 2 side by side -->
+    <div class="row g-4 mb-4">
+        <!-- Customer Search Form -->
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">1. Search or Add Customer</h5>
+                </div>
+                <div class="card-body">
+                    <form id="customerSearchForm">
+                        <label class="form-label fw-bold">Customer ID or Name</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="searchCustomerInput" placeholder="Enter ID or Name">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary" type="button" onclick="searchCustomer()">Search</button>
+                            <button class="btn btn-outline-success" type="button" onclick="navigateToAddCustomer()">Add New Customer</button>
+                        </div>
+                        <div id="loadCustomerIdInOrder"  style="font-weight: bold">
+                            <label class="form-label">load customer id</label>
+                            <label class="form-label">load customer name</label>
+                            <label class="form-label">load customer address</label>
+                            <label class="form-label">load customer tel</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Form -->
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">2. Add Item to Order</h5>
+                </div>
+                <div class="card-body">
+                    <form id="itemForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Item Code</label>
+                            <input type="text" class="form-control" id="itemCode1" placeholder="Enter item code">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Item Name</label>
+                            <input type="text" class="form-control" id="itemName1">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Unit Price</label>
+                            <input type="number" step="0.01" class="form-control" id="unitPrice">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Quantity</label>
+                            <input type="number" class="form-control" id="quantity">
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Add to Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Invoice Form (Below the 2 Forms) -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">3. Finalize Invoice</h5>
+        </div>
+        <div class="card-body">
+            <form id="invoiceForm">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Invoice No</label>
+                        <input type="text" class="form-control" id="invoiceNo" readonly placeholder="Auto-generated">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Date</label>
+                        <input type="date" class="form-control" id="invoiceDate">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label fw-bold">Payment Method</label>
+                        <select class="form-select" id="paymentMethod">
+                            <option>Cash</option>
+                            <option>Card</option>
+                            <option>Bank Transfer</option>
+                            <option>Mobile Payment</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 mt-3 d-flex justify-content-end gap-2">
+                        <button type="reset" class="btn btn-secondary">Clear</button>
+                        <button type="submit" class="btn btn-primary">Confirm Invoice</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Orders Table -->
+    <div class="table-responsive">
+        <h5 class="card-title mb-3">Order Summary</h5>
+        <table class="table table-striped table-hover border">
+            <thead class="table-success">
+            <tr>
+                <th>Item Code</th>
+                <th>Item Name</th>
+                <th>Unit Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody id="orderSummaryTable">
+            <!-- Dynamically filled -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
 
 <script src="Lib/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
