@@ -6,3 +6,11 @@
     width: 100%;
     height: 100vh;
 }
+#customerSection{
+    border:  3px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
