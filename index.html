@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="Css/Style.css">
 </head>
-<body>
+<body id="hi">
 
 <section id="headerSection-container">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#homeSection">Home</a>
+                        <a id="headerHome" class="nav-link active" aria-current="page" href="#homeSection">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#itemSection">Item</a>
@@ -159,7 +159,7 @@
     </div>
 </section>
 
-<section id="customerSection" class="d-flex flex-column align-items-center pt-3 pb-4">
+<section id="customerSection">
     <!-- Section Title -->
     <div class="section-title d-flex align-items-center mb-3" style="max-width: 940px; width: 100%;">
         <img src="img/signup.png" alt="Logo" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
@@ -280,7 +280,7 @@
     </div>
 </section>
 
-<section id="itemSection" class="d-flex flex-column align-items-center pt-3 pb-4">
+<section id="itemSection">
     <!-- Section Title -->
     <div class="section-title d-flex align-items-center mb-3" style="max-width: 940px; width: 100%;">
         <img src="img/items.jpeg" alt="Item Logo" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
@@ -532,5 +532,7 @@
 
 <script src="Lib/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+<script src="Js/Controller/MainController.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
