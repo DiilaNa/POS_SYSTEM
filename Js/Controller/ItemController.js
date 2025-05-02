@@ -22,7 +22,7 @@ function loadItem() {
     })
 }
 
-/*---------------------------Save Customer----------------------------------------*/
+/*---------------------------Save Item----------------------------------------*/
 $('#item_save').on('click',function () {
     let id = generateItemID();
     $('#itemCode').val(id);
@@ -40,6 +40,7 @@ $('#item_save').on('click',function () {
         let item_data = new ItemModel(id,name,qty,price);
         item_db.push(item_data);
         loadItem();
+        clearForm();
         Swal.fire({
             title: "Data Saved Successfully!",
             icon: "success",
@@ -59,8 +60,19 @@ function generateItemID() {
         return "I001";
     }
     // Get the last customer ID (assuming last added is at the end)
-    let lastId = item_db[item_db.length - 1].item();
+    let lastId = item_db[item_db.length - 1].itemId;
     let numberPart = parseInt(lastId.substring(1));
     let newId = numberPart + 1;
     return "I" + newId.toString().padStart(3, '0');
 }
+
+/*---------------------------Clear data in the form--------------------------------------------*/
+function clearForm() {
+    $('#itemCode').val(generateItemID());
+    $('#itemName').val('');
+    $('#itemQuantity').val('');
+    $('#itemPrice').val('');
+}
+$('#item_reset').on('click',function () {
+    clearForm();
+})
