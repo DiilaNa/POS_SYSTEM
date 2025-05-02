@@ -1,6 +1,26 @@
 import {customer_db} from "../DB/db.js";
 import CustomerModel  from "../Model/CustomerModel.js";
 
+/*Load Customer Id When The Page is Loading*/
+$(document).ready(function() {
+    $('#customerId').val(generateCustomerID());
+});
+
+/*Generate next Customer Id*/
+function generateCustomerID() {
+    if (customer_db.length === 0) {
+        return "C001";
+    }
+
+    // Get the last customer ID (assuming last added is at the end)
+    let lastId = customer_db[customer_db.length - 1].customerID; // e.g., "C005"
+
+    let numberPart = parseInt(lastId.substring(1)); // Remove 'C' and convert to int, e.g., 5
+    let newId = numberPart + 1;
+
+    return "C" + newId.toString().padStart(3, '0'); // e.g., "C006"
+}
+/*Load Table Data */
 function loadCustomers() {
     $('#customer-tbody').empty();
     customer_db.map((customer,index)=>{
@@ -22,8 +42,8 @@ function loadCustomers() {
 
 /*Save Customer*/
 $('#customer_save').on('click',function () {
-    console.log("Click una")
-    let id = $('#customerId').val();
+    let id = generateCustomerID()
+    $('#customerId').val(id);
     let name = $('#customerName').val();
     let address = $('#customerAddress').val();
     let salary = $('#customerSalary').val();
@@ -48,7 +68,7 @@ $('#customer_save').on('click',function () {
 });
 /*Clear data*/
 function clearForm() {
-    $('#customerId').val('');
+    $('#customerId').val(generateCustomerID());
     $('#customerName').val('');
     $('#customerAddress').val('');
     $('#customerSalary').val('');
