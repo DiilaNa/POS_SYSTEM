@@ -93,3 +93,45 @@ $("#customer-tbody").on('click', 'tr', function(){
     $("#customerSalary").val(salary);
 });
 
+/*Update Customer*/
+$('#customer_update').on('click', function () {
+    let id = $('#customerId').val();
+    let name = $('#customerName').val();
+    let address = $('#customerAddress').val();
+    let salary = $('#customerSalary').val();
+
+    if (id === '' || name === '' || address === '' || salary === '') {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Select data to update!",
+        });
+        return;
+    }
+
+    // Find index of customer by ID
+    const index = customer_db.findIndex(c => c.customerID === id);
+
+    if (index !== -1) {
+        // Update the existing customer object
+        customer_db[index].customerName = name;
+        customer_db[index].address = address;
+        customer_db[index].customerSalary = salary;
+
+        loadCustomers();
+        clearForm();
+
+        Swal.fire({
+            title: "Updated Successfully!",
+            icon: "success",
+            draggable: true
+        });
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Not Found",
+            text: "Customer with ID " + id + " does not exist.",
+        });
+    }
+});
+
