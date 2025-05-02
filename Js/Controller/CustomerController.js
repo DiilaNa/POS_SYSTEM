@@ -1,7 +1,7 @@
 import {customer_db} from "../DB/db.js";
 import CustomerModel  from "../Model/CustomerModel.js";
 
-/*---------------------Load Customer Id When The Page is Loading-------------------*/
+/*---------------------Load Customer ID When The Page is Loading-------------------*/
 $(document).ready(function() {
     $('#customerId').val(generateCustomerID());
 });
