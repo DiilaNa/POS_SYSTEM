@@ -76,3 +76,18 @@ function clearForm() {
 $('#item_reset').on('click',function () {
     clearForm();
 })
+/*-----------------------Table Onclick Action-------------------------------------*/
+$("#item-body").on('click', 'tr', function(){
+    let idx = $(this).index();
+    let obj = item_db[idx];
+
+    let id = obj.itemId;
+    let name = obj.itemName;
+    let qty = obj.itemQty;
+    let price = obj.itemPrice
+
+    $("#itemCode").val(id);
+    $("#itemName").val(name);
+    $("#itemQuantity").val(qty);
+    $("#itemPrice").val(price);
+});
