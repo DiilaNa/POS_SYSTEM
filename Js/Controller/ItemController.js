@@ -91,3 +91,44 @@ $("#item-body").on('click', 'tr', function(){
     $("#itemQuantity").val(qty);
     $("#itemPrice").val(price);
 });
+
+/*---------------Update Item Details-------------------------------*/
+$('#item_update').on('click', function () {
+    let id = $('#itemCode').val();
+    let name = $('#itemName').val();
+    let qty = $('#itemQuantity').val();
+    let price = $('#itemPrice').val();
+
+    if (id === '' || name === '' || qty === '' || price === '') {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Select data to update!",
+        });
+        return;
+    }
+
+    /*Find index of customer by ID*/
+    const index = item_db.findIndex(c => c.itemId === id);
+
+    if (index !== -1) {
+        item_db[index].itemName= name;
+        item_db[index].itemQty = qty;
+        item_db[index].itemPrice = price;
+
+        loadItem();
+        clearForm();
+
+        Swal.fire({
+            title: "Updated Successfully!",
+            icon: "success",
+            draggable: true
+        });
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Not Found",
+            text: "Item with ID " + id + " does not exist.",
+        });
+    }
+});
