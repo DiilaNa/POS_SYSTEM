@@ -1,18 +1,12 @@
 import {item_db} from "../DB/db.js";
 import {customer_db} from "../DB/db.js";
 
-/*---------------------Load Item ID When The Page is Loading-------------------*/
-$(document).ready(function() {
-  /*  $('#loadCustomerIdInOrder').css('visibility','hidden');
-    $('#loadOrderIdInOrder').css('visibility','hidden');*/
-});
-
 /*--------------------Search Customer In the DB--------------------------------*/
 $('#searchCustomer').on('click',function () {
-    search();
+    searchCustomer();
 })
 
-function search() {
+function searchCustomer() {
     let id = $('#searchCustomerInput').val().trim();
     if (!id){
         Swal.fire({
@@ -24,11 +18,40 @@ function search() {
     }
     const c = customer_db.find(cust => cust.customerID === id);
     if (c){
-        $('#loadCustomerIdInOrder').css('visibility','visible');
         $('#loadCid').val(c.customerID);
         $('#loadCName').val(c.customerName);
         $('#loadCAddress').val(c.address);
         $('#loadCSalary').val(c.customerSalary);
+    }else {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Id does not Exist",
+        });
+    }
+}
+
+/*--------------------Search Item In the DB--------------------------------*/
+$('#searchItem').on('click',function () {
+    searchItem();
+})
+
+function searchItem() {
+    let id = $('#itemIDInput').val().trim();
+    if (!id){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Search an ID first",
+        });
+        return
+    }
+    const c = item_db.find(item => item.itemId === id);
+    if (c){
+        $('#loadItemId').val(c.itemId);
+        $('#loadItemName').val(c.itemName);
+        $('#loadItemQty').val(c.itemQty);
+        $('#loadItemPrice').val(c.itemPrice);
     }else {
         Swal.fire({
             icon: "error",
