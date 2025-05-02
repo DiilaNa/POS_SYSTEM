@@ -365,14 +365,14 @@
                             <input type="text" class="form-control" id="searchCustomerInput" placeholder="Enter ID">
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-primary" type="button" onclick="searchCustomer()">Search</button>
+                            <button id="searchCustomer" class="btn btn-primary" type="button" >Search</button>
                             <!--  <button class="btn btn-outline-success" type="button" onclick="navigateToAddCustomer()">Add New Customer</button>-->
                         </div>
                         <div id="loadCustomerIdInOrder"  style="font-weight: bold">
-                            <label class="form-label">load customer id</label>
-                            <label class="form-label">load customer name</label>
-                            <label class="form-label">load customer address</label>
-                            <label class="form-label">load customer tel</label>
+                            <label id="loadCid" class="form-label">Customer id</label>
+                            <label id="loadCName" class="form-label">Customer name</label>
+                            <label id="loadCAddress" class="form-label">Address</label>
+                            <label id="loadCSalary" class="form-label">Salary</label>
                         </div>
                     </form>
                 </div>
