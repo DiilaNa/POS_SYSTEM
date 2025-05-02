@@ -359,14 +359,14 @@
                 </div>
                 <div class="card-body">
                     <form id="customerSearchForm">
-                        <label class="form-label fw-bold">Customer ID or Name</label>
+                        <label class="form-label fw-bold">Customer ID</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" id="searchCustomerInput" placeholder="Enter ID or Name">
+                            <input type="text" class="form-control" id="searchCustomerInput" placeholder="Enter ID">
                         </div>
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-end">
                             <button class="btn btn-primary" type="button" onclick="searchCustomer()">Search</button>
-                            <button class="btn btn-outline-success" type="button" onclick="navigateToAddCustomer()">Add New Customer</button>
+                            <!--  <button class="btn btn-outline-success" type="button" onclick="navigateToAddCustomer()">Add New Customer</button>-->
                         </div>
                         <div id="loadCustomerIdInOrder"  style="font-weight: bold">
                             <label class="form-label">load customer id</label>
@@ -387,17 +387,14 @@
                 </div>
                 <div class="card-body">
                     <form id="itemForm">
-                            <div class="dropdown" id="itemIdDropDown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Load Item Ids
-                                </button>
-                                <label class="form-label">Choose an Item</label>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" ></a></li>
-                                    <li><a class="dropdown-item" ></a></li>
-                                    <li><a class="dropdown-item" ></a></li>
-                                </ul>
-                            </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" placeholder="Enter ID">
+                        </div>
+                        <div class="d-flex justify-content-end">
+<!--                            <button class="btn btn-outline-success" type="button" onclick="navigateToAddItem()">Add New Item</button>-->
+                            <button class="btn btn-primary mb-2" type="button" onclick="searchItem()">Search</button>
+                        </div>
                         <div id="loadOrderIdInOrder">
                             <label class="form-label">load order id</label>
                             <label class="form-label">load order name</label>
@@ -476,6 +473,7 @@
 <script type="module" src="Js/Controller/MainController.js"></script>
 <script type="module" src="Js/Controller/CustomerController.js"></script>
 <script type="module" src="Js/Controller/ItemController.js"></script>
+<script type="module" src="Js/Controller/OrderController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

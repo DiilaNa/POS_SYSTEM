@@ -1,6 +1,10 @@
 import {item_db} from "../DB/db.js";
 import ItemModel  from "../Model/ItemModel.js";
 
+/*---------------------Load Item ID When The Page is Loading-------------------*/
+$(document).ready(function() {
+    $('#itemCode').val(generateItemID());
+});
 
 /*-----------------------Load Table Data--------------------------------------------*/
 function loadItem() {
@@ -49,10 +53,7 @@ $('#item_save').on('click',function () {
     }
 });
 
-/*---------------------Load Item ID When The Page is Loading-------------------*/
-$(document).ready(function() {
-    $('#itemCode').val(generateItemID());
-});
+
 
 /*--------------------------Generate next Item Id----------------------------*/
 function generateItemID() {
