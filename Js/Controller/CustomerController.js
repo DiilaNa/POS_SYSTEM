@@ -19,4 +19,6 @@ function loadCustomers() {
 
     })
 }
-
+$('#customer_save').on('click',function () {
+    let id = $('')
+})
