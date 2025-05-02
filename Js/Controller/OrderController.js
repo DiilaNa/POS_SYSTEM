@@ -30,6 +30,14 @@ function searchCustomer() {
         });
     }
 }
+/*--------------------Reset BTN in Customer---------------------------*/
+$('#resetCustomerDetails').on('click',function () {
+    $('#searchCustomerInput').val('');
+    $('#loadCid').val('');
+    $('#loadCName').val('');
+    $('#loadCAddress').val('');
+    $('#loadCSalary').val('');
+})
 
 /*--------------------Search Item In the DB--------------------------------*/
 $('#searchItem').on('click',function () {
@@ -60,4 +68,14 @@ function searchItem() {
         });
     }
 }
+
+/*-------------------Reset BTN in Item------------------------*/
+$('#resetItemDetails').on('click',function () {
+    $('#itemIDInput').val('');
+    $('#loadItemId').val('');
+    $('#loadItemName').val('');
+    $('#loadItemQty').val('');
+    $('#loadItemPrice').val('');
+    $('#quantity').val('');
+})
 
