@@ -19,6 +19,8 @@ function loadCustomers() {
 
     })
 }
+
+/*Save Customer*/
 $('#customer_save').on('click',function () {
     console.log("Click una")
     let id = $('#customerId').val();
@@ -36,11 +38,35 @@ $('#customer_save').on('click',function () {
         let customer_data = new CustomerModel(id,name,address,salary);
         customer_db.push(customer_data);
         loadCustomers();
+        clearForm();
         Swal.fire({
             title: "Data Saved Successfully!",
             icon: "success",
             draggable: true
         });
     }
+});
+/*Clear data*/
+function clearForm() {
+    $('#customerId').val('');
+    $('#customerName').val('');
+    $('#customerAddress').val('');
+    $('#customerSalary').val('');
+}
+
+/*Onclick*/
+$("#customer-tbody").on('click', 'tr', function(){
+    let idx = $(this).index();
+    let obj = customer_db[idx];
+
+    let id = obj.customerID;
+    let name = obj.customerName;
+    let address = obj.address;
+    let salary = obj.customerSalary
+
+    $("#customerId").val(id);
+    $("#customerName").val(name);
+    $("#customerAddress").val(address);
+    $("#customerSalary").val(salary);
 });
 
