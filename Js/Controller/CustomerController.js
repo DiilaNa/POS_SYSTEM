@@ -73,6 +73,9 @@ function clearForm() {
     $('#customerAddress').val('');
     $('#customerSalary').val('');
 }
+$('#customer_reset').on('click',function () {
+    clearForm();
+})
 
 /*Onclick*/
 $("#customer-tbody").on('click', 'tr', function(){
