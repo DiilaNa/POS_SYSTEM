@@ -1,26 +1,23 @@
 import {customer_db} from "../DB/db.js";
 import CustomerModel  from "../Model/CustomerModel.js";
 
-/*Load Customer Id When The Page is Loading*/
+/*---------------------Load Customer Id When The Page is Loading-------------------*/
 $(document).ready(function() {
     $('#customerId').val(generateCustomerID());
 });
 
-/*Generate next Customer Id*/
+/*--------------------------Generate next Customer Id----------------------------*/
 function generateCustomerID() {
     if (customer_db.length === 0) {
         return "C001";
     }
-
     // Get the last customer ID (assuming last added is at the end)
-    let lastId = customer_db[customer_db.length - 1].customerID; // e.g., "C005"
-
-    let numberPart = parseInt(lastId.substring(1)); // Remove 'C' and convert to int, e.g., 5
+    let lastId = customer_db[customer_db.length - 1].customerID;
+    let numberPart = parseInt(lastId.substring(1));
     let newId = numberPart + 1;
-
-    return "C" + newId.toString().padStart(3, '0'); // e.g., "C006"
+    return "C" + newId.toString().padStart(3, '0');
 }
-/*Load Table Data */
+/*-----------------------Load Table Data--------------------------------------------*/
 function loadCustomers() {
     $('#customer-tbody').empty();
     customer_db.map((customer,index)=>{
@@ -40,7 +37,7 @@ function loadCustomers() {
     })
 }
 
-/*Save Customer*/
+/*---------------------------Save Customer----------------------------------------*/
 $('#customer_save').on('click',function () {
     let id = generateCustomerID()
     $('#customerId').val(id);
@@ -66,7 +63,7 @@ $('#customer_save').on('click',function () {
         });
     }
 });
-/*Clear data*/
+/*---------------------------Clear data in the form--------------------------------------------*/
 function clearForm() {
     $('#customerId').val(generateCustomerID());
     $('#customerName').val('');
@@ -77,7 +74,7 @@ $('#customer_reset').on('click',function () {
     clearForm();
 })
 
-/*Onclick*/
+/*-----------------------Table Onclick Action-------------------------------------*/
 $("#customer-tbody").on('click', 'tr', function(){
     let idx = $(this).index();
     let obj = customer_db[idx];
@@ -93,7 +90,7 @@ $("#customer-tbody").on('click', 'tr', function(){
     $("#customerSalary").val(salary);
 });
 
-/*Update Customer*/
+/*---------------Update Customer Details-------------------------------*/
 $('#customer_update').on('click', function () {
     let id = $('#customerId').val();
     let name = $('#customerName').val();
@@ -109,11 +106,10 @@ $('#customer_update').on('click', function () {
         return;
     }
 
-    // Find index of customer by ID
+    /*Find index of customer by ID*/
     const index = customer_db.findIndex(c => c.customerID === id);
 
     if (index !== -1) {
-        // Update the existing customer object
         customer_db[index].customerName = name;
         customer_db[index].address = address;
         customer_db[index].customerSalary = salary;
@@ -135,7 +131,7 @@ $('#customer_update').on('click', function () {
     }
 });
 
-/*Delete Customer*/
+/*--------------------------Delete Customer--------------------------*/
 $('#customer_delete').on('click', function () {
     let id = $('#customerId').val();
 
@@ -148,7 +144,6 @@ $('#customer_delete').on('click', function () {
         return;
     }
 
-    // Confirm before delete
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -164,7 +159,6 @@ $('#customer_delete').on('click', function () {
                 customer_db.splice(index, 1); // Remove from array
                 loadCustomers();
                 clearForm();
-
                 Swal.fire(
                     "Deleted!",
                     "Customer has been deleted.",
