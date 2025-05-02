@@ -1,4 +1,4 @@
-import {customer_db, item_db} from "../DB/db.js";
+import {item_db} from "../DB/db.js";
 import ItemModel  from "../Model/ItemModel.js";
 
 
@@ -59,7 +59,7 @@ function generateItemID() {
     if (item_db.length === 0) {
         return "I001";
     }
-    // Get the last customer ID (assuming last added is at the end)
+    // Get the last Item ID (assuming last added is at the end)
     let lastId = item_db[item_db.length - 1].itemId;
     let numberPart = parseInt(lastId.substring(1));
     let newId = numberPart + 1;
@@ -108,7 +108,7 @@ $('#item_update').on('click', function () {
         return;
     }
 
-    /*Find index of customer by ID*/
+    /*Find index of Item by ID*/
     const index = item_db.findIndex(c => c.itemId === id);
 
     if (index !== -1) {
