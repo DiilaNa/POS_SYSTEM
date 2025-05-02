@@ -3,8 +3,8 @@ import {customer_db} from "../DB/db.js";
 
 /*---------------------Load Item ID When The Page is Loading-------------------*/
 $(document).ready(function() {
-    $('#loadCustomerIdInOrder').css('visibility','hidden');
-    $('#loadOrderIdInOrder').css('visibility','hidden');
+  /*  $('#loadCustomerIdInOrder').css('visibility','hidden');
+    $('#loadOrderIdInOrder').css('visibility','hidden');*/
 });
 
 /*--------------------Search Customer In the DB--------------------------------*/
@@ -22,16 +22,13 @@ function search() {
         });
         return
     }
-    console.log("Customer DB at search time:", customer_db);
-    console.log("Searching ID :" , id)
-
     const c = customer_db.find(cust => cust.customerID === id);
     if (c){
         $('#loadCustomerIdInOrder').css('visibility','visible');
-        $('#loadCid').text(c.customerID)
-        $('#loadCName').text(c.customerName)
-        $('#loadCAddress').text(c.address)
-        $('#loadCSalary').text(c.customerSalary)
+        $('#loadCid').val(c.customerID);
+        $('#loadCName').val(c.customerName);
+        $('#loadCAddress').val(c.address);
+        $('#loadCSalary').val(c.customerSalary);
     }else {
         Swal.fire({
             icon: "error",

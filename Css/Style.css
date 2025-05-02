@@ -64,31 +64,6 @@
     font-weight: 700;
     line-height: 1;
 }
-/*Order*/
-#loadCustomerIdInOrder{
-    display: grid;
-    grid-template-columns: repeat(2 , 1fr);
-    gap: 2px;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    font-size: 20px;
-}
-#itemIdDropDown{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 20px;
-}
-
-#loadOrderIdInOrder{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 2px;
-    margin-top: 45px;
-    margin-bottom: 20px;
-    font-size: 15px;
-    font-weight: bold;
-}
 .card-img-top{
     width: 100px;
     height: 100px;
