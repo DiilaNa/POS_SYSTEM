@@ -1,9 +1,9 @@
-import {customer_db} from "../DB/db";
-import CustomerModel  from "../Model/CustomerModel";
+import {customer_db} from "../DB/db.js";
+import CustomerModel  from "../Model/CustomerModel.js";
 
 function loadCustomers() {
     $('#customer-tbody').empty();
-    customer_db.map((customer)=>{
+    customer_db.map((customer,index)=>{
         let id = customer.customerID;
         let name = customer.customerName;
         let address = customer.address;
@@ -20,6 +20,7 @@ function loadCustomers() {
     })
 }
 $('#customer_save').on('click',function () {
+    console.log("Click una")
     let id = $('#customerId').val();
     let name = $('#customerName').val();
     let address = $('#customerAddress').val();
@@ -31,5 +32,15 @@ $('#customer_save').on('click',function () {
             title: "Oops...",
             text: "Something went wrong!",
         });
+    }else {
+        let customer_data = new CustomerModel(id,name,address,salary);
+        customer_db.push(customer_data);
+        loadCustomers();
+        Swal.fire({
+            title: "Data Saved Successfully!",
+            icon: "success",
+            draggable: true
+        });
     }
-})
+});
+

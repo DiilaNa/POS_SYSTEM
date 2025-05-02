@@ -5,6 +5,7 @@ $(document).ready(function () {
         e.preventDefault(); // Prevent the default jump behavior
 
         const target = $(this).attr("href"); // Get the section id, like #homeSection
+        if (!target || target === "#") return;
         $("section").not("#headerSection-container").hide(); // Hide all other sections
         $(target).show(); // Show the target section
     });

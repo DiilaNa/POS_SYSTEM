@@ -6,12 +6,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="Css/Style.css">
 </head>
-<body id="hi">
-
+<body>
 <section id="headerSection-container">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <a class="navbar-brand d-flex align-items-center">
                 <img src="img/Colorful%20Modern%20Infinity%20Creative%20Studio%20Logo.jpg" alt="Logo" width="80" height="54" class="d-inline-block align-text-top me-2">
                 ABC POS SYSTEM
             </a>
@@ -35,7 +34,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#customerSection">Customers</a></li>
-                            <li><a class="dropdown-item" href="#">Setting</a></li>
+                          <!--  <li><a class="dropdown-item" href="#">Setting</a></li>-->
                             <li><a class="dropdown-item" href="#aboutSection">About</a></li>
                         </ul>
                     </li>
@@ -204,13 +203,13 @@
                 </div>
                 <div class="col-12 d-flex justify-content-end gap-2 mt-4">
                     <button class="btn btn-secondary" type="reset">Clear</button>
-                    <button id="customer_save" class="btn btn-success" type="submit">
-                        <i class="bi bi-save"></i> Save Customer
+                    <button id="customer_save" class="btn btn-success" type="button">
+                        <i class="bi bi-save"></i> Save
                     </button>
                     <button type="button" class="btn btn-primary">
                         <i class="bi bi-arrow-clockwise"></i> Update
                     </button>
-                    <button type="button" class="btn btn-danger">
+                    <button id="customer_delete" type="button" class="btn btn-danger">
                         <i class="bi bi-trash"></i> Delete
                     </button>
                 </div>
@@ -225,7 +224,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Address</th>
-                        <th scope="col">Phone</th>
+                        <th scope="col">Salary</th>
                     </tr>
                     </thead>
                     <tbody id="customer-tbody">
@@ -488,7 +487,8 @@
 
 <script src="Lib/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-<script src="Js/Controller/MainController.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="module" src="Js/Controller/MainController.js"></script>
+<script type="module" src="Js/Controller/CustomerController.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
