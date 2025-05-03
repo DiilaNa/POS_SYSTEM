@@ -123,6 +123,7 @@ $('#addToOrder').on('click',function () {
     } else {
             item.itemQty -= needQty;
             let total = price*needQty;
+            $('#loadTotal').text(total)
             loadItem();
             let order_data = new OrderModel(itemName,needQty,price,total);
             orders_db.push(order_data);
@@ -158,21 +159,52 @@ function loadOrderTable() {
     })
 }
 
-/*--------------------------Generate next Order Id----------------------------*/
+/*--------------------------Generate next PayId----------------------------*/
 function generatePayID() {
     if (payment_db.length === 0) {
         return "PAY001";
     }
     // Get the last Item ID (assuming last added is at the end)
     let lastId = payment_db[payment_db.length - 1].payId;
-    let numberPart = parseInt(lastId.substring(1));
+    let numberPart = parseInt(lastId.substring(3));
     let newId = numberPart + 1;
     return "PAY" + newId.toString().padStart(3, '0');
 }
+/*------------------------Save Payment-----------------------------*/
+$('#addPayment').on('click',function () {
+    let id = generatePayID()
+    $('#invoiceNo').val(id);
+    let date = $('#invoiceDate').val();
+    let method = $('#paymentMethod').val();
+    let total2 = $('#loadTotal').text();
+    let total = parseFloat(total2);
 
+    if (id === '' || date === '' || method === '' || total<=0 || isNaN(total)){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+        });
+    }else {
+        let payment_data = new PaymentModel(id,date,method,total);
+        payment_db.push(payment_data);
+        resetPayment();
+        Swal.fire({
+            title: "Data Saved Successfully!",
+            icon: "success",
+            draggable: true
+        });
+    }
+    console.log(payment_db)
+});
 
-// let payID = generatePayID();
-//
-//     $('#invoiceNo').val(payID)
-
+/*-------------Reset Payment----------------------*/
+$('#resetPaymentDetails').on('click',function () {
+    resetPayment();
+})
+function resetPayment() {
+    let id = generatePayID();
+    $('#invoiceNo').val(id)
+    $('#invoiceDate, #paymentMethod, #loadTotal').val('');
+}
 

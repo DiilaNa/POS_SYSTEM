@@ -479,10 +479,13 @@
                             <option>Mobile Payment</option>
                         </select>
                     </div>
-                    <div class="col-md-12 mt-3 d-flex justify-content-end gap-2">
-                        <button type="reset" class="btn btn-secondary">Clear</button>
-                        <button type="button" class="btn btn-primary">Place Order</button>
-                    </div>
+                        <div class="d-flex justify-content-start gap-3" style="font-size:23px; font-weight: bolder">
+                            <label class="form-label fw-bold mt-3">Total Amount to Pay is :</label> <label id="loadTotal" class="form-label fw-bold mt-3"></label>
+                        </div>
+                        <div class="col-md-12 mt-3 d-flex justify-content-end gap-2">
+                            <button id="resetPaymentDetails" type="button" class="btn btn-secondary">Clear</button>
+                            <button id="addPayment" type="button" class="btn btn-primary">Add Payment</button>
+                        </div>
                 </div>
             </form>
         </div>
