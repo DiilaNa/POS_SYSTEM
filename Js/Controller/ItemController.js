@@ -54,8 +54,6 @@ $('#item_save').on('click',function () {
     }
 });
 
-
-
 /*--------------------------Generate next Item Id----------------------------*/
 function generateItemID() {
     if (item_db.length === 0) {

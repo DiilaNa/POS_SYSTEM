@@ -10,8 +10,6 @@ $(document).ready(function() {
     loadOrderTable();
 });
 
-
-
 /*--------------------Search Customer In the DB--------------------------------*/
 $('#searchCustomer').on('click',function () {
     searchCustomer();
@@ -195,7 +193,6 @@ $('#addPayment').on('click',function () {
             draggable: true
         });
     }
-    console.log(payment_db)
 });
 
 /*-------------Reset Payment----------------------*/
@@ -205,6 +202,6 @@ $('#resetPaymentDetails').on('click',function () {
 function resetPayment() {
     let id = generatePayID();
     $('#invoiceNo').val(id)
-    $('#invoiceDate, #paymentMethod, #loadTotal').val('');
+    $('#invoiceDate, #paymentMethod, #loadTotal,#loadTotal').val('');
 }
 
