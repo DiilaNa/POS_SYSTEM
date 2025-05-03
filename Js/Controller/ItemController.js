@@ -8,7 +8,7 @@ $(document).ready(function() {
 });
 
 /*-----------------------Load Table Data--------------------------------------------*/
-function loadItem() {
+export function loadItem() {
     $('#item-body').empty();
     item_db.map((item)=>{
         let id = item.itemId;

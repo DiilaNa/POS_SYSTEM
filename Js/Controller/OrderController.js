@@ -1,5 +1,6 @@
 import {item_db, orders_db} from "../DB/db.js";
 import {customer_db} from "../DB/db.js";
+import {loadItem} from "./ItemController.js";
 import OrderModel from "../Model/OrderModel.js";
 /*-----------------Load Page---------------------------*/
 $(document).ready(function() {
@@ -119,7 +120,7 @@ $('#addToOrder').on('click',function () {
     } else {
             item.itemQty -= needQty;
             let total = price*needQty;
-
+            loadItem();
             let order_data = new OrderModel(itemName,needQty,price,total);
             orders_db.push(order_data);
 
