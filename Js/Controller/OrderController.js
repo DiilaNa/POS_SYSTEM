@@ -1,5 +1,6 @@
-import {item_db} from "../DB/db.js";
+import {item_db, orders_db} from "../DB/db.js";
 import {customer_db} from "../DB/db.js";
+import OrderModel from "../Model/OrderModel";
 
 /*--------------------Search Customer In the DB--------------------------------*/
 $('#searchCustomer').on('click',function () {
@@ -79,18 +80,39 @@ $('#resetItemDetails').on('click',function () {
     $('#quantity').val('');
 })
 
-/*----------------Quantity Check---------------------------*/
+/*----------------Save and Quantity Check---------------------------*/
 $('#addToOrder').on('click',function () {
+    let id ;
+    let  itemName = $('#itemName').val();
+    let price = $('#itemPrice').val();
     let quantityOnHand = $('#loadItemQty').val();
     let needQty = $('#quantity').val();
+    let total = price*needQty;
     if (quantityOnHand<needQty){
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Not enough Quantity",
         });
-    }else {
-
+    } else {
+        let order_data = new OrderModel(id,itemName,needQty,price,total);
+        orders_db.push(order_data);
+        Swal.fire({
+            title: "Data Saved Successfully!",
+            icon: "success",
+            draggable: true
+        });
+       $('#order-body').empty();
+       orders_db.map((order,index) => {
+           let data = `<tr>
+                            <td>${id}</td>
+                            <td>${itemName}</td>
+                            <td>${needQty}</td>
+                            <td>${price}</td>
+                             <td>${total}</td>
+                        </tr>`
+           $('#order-body').append(data);
+        })
     }
 })
 
