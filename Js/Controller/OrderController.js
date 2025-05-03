@@ -31,12 +31,15 @@ function searchCustomer() {
     }
 }
 /*--------------------Reset BTN in Customer---------------------------*/
-$('#resetCustomerDetails').on('click',function () {
+function resetCustomer() {
     $('#searchCustomerInput').val('');
     $('#loadCid').val('');
     $('#loadCName').val('');
     $('#loadCAddress').val('');
     $('#loadCSalary').val('');
+}
+$('#resetCustomerDetails').on('click',function () {
+    resetCustomer();
 })
 
 /*--------------------Search Item In the DB--------------------------------*/
@@ -70,13 +73,16 @@ function searchItem() {
 }
 
 /*-------------------Reset BTN in Item------------------------*/
-$('#resetItemDetails').on('click',function () {
+function resetItem() {
     $('#itemIDInput').val('');
     $('#loadItemId').val('');
     $('#loadItemName').val('');
     $('#loadItemQty').val('');
     $('#loadItemPrice').val('');
     $('#quantity').val('');
+}
+$('#resetItemDetails').on('click',function () {
+    resetItem();
 })
 
 /*----------------Save and Quantity Check---------------------------*/
@@ -97,7 +103,8 @@ $('#addToOrder').on('click',function () {
         let order_data = new OrderModel(itemName,needQty,price,total);
         orders_db.push(order_data);
         loadOrderTable();
-
+        resetItem();
+        resetCustomer();
         Swal.fire({
             title: "Data Saved Successfully!",
             icon: "success",
