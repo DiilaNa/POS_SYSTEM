@@ -79,3 +79,18 @@ $('#resetItemDetails').on('click',function () {
     $('#quantity').val('');
 })
 
+/*----------------Quantity Check---------------------------*/
+$('#addToOrder').on('click',function () {
+    let quantityOnHand = $('#loadItemQty').val();
+    let needQty = $('#quantity').val();
+    if (quantityOnHand<needQty){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Not enough Quantity",
+        });
+    }else {
+
+    }
+})
+
