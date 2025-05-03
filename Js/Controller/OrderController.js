@@ -1,7 +1,6 @@
 import {item_db, orders_db} from "../DB/db.js";
 import {customer_db} from "../DB/db.js";
-import OrderModel from "../Model/OrderModel";
-
+import OrderModel from "../Model/OrderModel.js";
 /*--------------------Search Customer In the DB--------------------------------*/
 $('#searchCustomer').on('click',function () {
     searchCustomer();
@@ -82,12 +81,12 @@ $('#resetItemDetails').on('click',function () {
 
 /*----------------Save and Quantity Check---------------------------*/
 $('#addToOrder').on('click',function () {
-    let id ;
-    let  itemName = $('#itemName').val();
-    let price = $('#itemPrice').val();
+    let itemName = $('#loadItemName').val();
+    let price = $('#loadItemPrice').val();
     let quantityOnHand = $('#loadItemQty').val();
     let needQty = $('#quantity').val();
     let total = price*needQty;
+
     if (quantityOnHand<needQty){
         Swal.fire({
             icon: "error",
@@ -95,24 +94,34 @@ $('#addToOrder').on('click',function () {
             text: "Not enough Quantity",
         });
     } else {
-        let order_data = new OrderModel(id,itemName,needQty,price,total);
+        let order_data = new OrderModel(itemName,needQty,price,total);
         orders_db.push(order_data);
+        loadOrderTable();
+
         Swal.fire({
             title: "Data Saved Successfully!",
             icon: "success",
             draggable: true
         });
-       $('#order-body').empty();
-       orders_db.map((order,index) => {
-           let data = `<tr>
-                            <td>${id}</td>
+    }
+})
+
+/*---------------------Load table--------------------*/
+function loadOrderTable() {
+    $('#order-body').empty();
+    orders_db.map((order,index) => {
+        let itemName = order.itemName;
+        let qty = order.qty;
+        let price = order.price;
+        let total = order.total;
+        let data = `<tr>
+                            <td>${index + 1}</td>
                             <td>${itemName}</td>
-                            <td>${needQty}</td>
+                            <td>${qty}</td>
                             <td>${price}</td>
                              <td>${total}</td>
                         </tr>`
-           $('#order-body').append(data);
-        })
-    }
-})
+        $('#order-body').append(data);
+    })
+}
 
