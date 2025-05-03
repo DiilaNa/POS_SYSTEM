@@ -4,6 +4,7 @@ import CustomerModel  from "../Model/CustomerModel.js";
 /*---------------------Load Customer ID When The Page is Loading-------------------*/
 $(document).ready(function() {
     $('#customerId').val(generateCustomerID());
+    loadCustomers();
 });
 
 /*--------------------------Generate next Customer Id----------------------------*/

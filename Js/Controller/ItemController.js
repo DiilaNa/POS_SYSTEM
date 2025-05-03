@@ -4,6 +4,7 @@ import ItemModel  from "../Model/ItemModel.js";
 /*---------------------Load Item ID When The Page is Loading-------------------*/
 $(document).ready(function() {
     $('#itemCode').val(generateItemID());
+    loadItem();
 });
 
 /*-----------------------Load Table Data--------------------------------------------*/

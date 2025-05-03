@@ -1,6 +1,13 @@
 import {item_db, orders_db} from "../DB/db.js";
 import {customer_db} from "../DB/db.js";
 import OrderModel from "../Model/OrderModel.js";
+/*-----------------Load Page---------------------------*/
+$(document).ready(function() {
+    loadOrderTable();
+});
+
+
+
 /*--------------------Search Customer In the DB--------------------------------*/
 $('#searchCustomer').on('click',function () {
     searchCustomer();
@@ -87,30 +94,45 @@ $('#resetItemDetails').on('click',function () {
 
 /*----------------Save and Quantity Check---------------------------*/
 $('#addToOrder').on('click',function () {
-    let itemName = $('#loadItemName').val();
-    let price = $('#loadItemPrice').val();
-    let quantityOnHand = $('#loadItemQty').val();
-    let needQty = $('#quantity').val();
-    let total = price*needQty;
 
-    if (quantityOnHand<needQty){
+    let itemID = $('#loadItemId').val();
+    let itemName = $('#loadItemName').val();
+    let price = parseFloat($('#loadItemPrice').val());
+    let needQty = parseInt($('#quantity').val());
+    let item = item_db.find(item => item.itemId === itemID )
+
+    if (!item) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "No Item Found",
+        });
+        return
+    }
+
+    if (item.itemQty<needQty){
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Not enough Quantity",
         });
     } else {
-        let order_data = new OrderModel(itemName,needQty,price,total);
-        orders_db.push(order_data);
-        loadOrderTable();
-        resetItem();
-        resetCustomer();
-        Swal.fire({
-            title: "Data Saved Successfully!",
-            icon: "success",
-            draggable: true
-        });
-    }
+            item.itemQty -= needQty;
+            let total = price*needQty;
+
+            let order_data = new OrderModel(itemName,needQty,price,total);
+            orders_db.push(order_data);
+
+            loadOrderTable();
+            resetItem();
+            resetCustomer();
+
+            Swal.fire({
+                title: "Data Saved Successfully!",
+                icon: "success",
+                draggable: true
+            });
+        }
 })
 
 /*---------------------Load table--------------------*/
@@ -131,4 +153,5 @@ function loadOrderTable() {
         $('#order-body').append(data);
     })
 }
+
 
