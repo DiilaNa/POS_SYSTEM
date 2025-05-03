@@ -1,9 +1,12 @@
-import {item_db, orders_db} from "../DB/db.js";
+import {item_db, orders_db, payment_db} from "../DB/db.js";
 import {customer_db} from "../DB/db.js";
 import {loadItem} from "./ItemController.js";
 import OrderModel from "../Model/OrderModel.js";
+import PaymentModel from "../Model/PaymentModel.js";
+
 /*-----------------Load Page---------------------------*/
 $(document).ready(function() {
+    $('#invoiceNo').val(generatePayID())
     loadOrderTable();
 });
 
@@ -154,5 +157,22 @@ function loadOrderTable() {
         $('#order-body').append(data);
     })
 }
+
+/*--------------------------Generate next Order Id----------------------------*/
+function generatePayID() {
+    if (payment_db.length === 0) {
+        return "PAY001";
+    }
+    // Get the last Item ID (assuming last added is at the end)
+    let lastId = payment_db[payment_db.length - 1].payId;
+    let numberPart = parseInt(lastId.substring(1));
+    let newId = numberPart + 1;
+    return "PAY" + newId.toString().padStart(3, '0');
+}
+
+
+// let payID = generatePayID();
+//
+//     $('#invoiceNo').val(payID)
 
 
