@@ -3,6 +3,7 @@ import {customer_db} from "../DB/db.js";
 import {loadItem} from "./ItemController.js";
 import OrderModel from "../Model/OrderModel.js";
 import PaymentModel from "../Model/PaymentModel.js";
+import {setCount} from "./HomeController.js";
 
 /*-----------------Load Page---------------------------*/
 $(document).ready(function() {
@@ -129,6 +130,7 @@ $('#addToOrder').on('click',function () {
             loadOrderTable();
             resetItem();
             resetCustomer();
+            setCount();
 
             Swal.fire({
                 title: "Data Saved Successfully!",
