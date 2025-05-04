@@ -9,8 +9,19 @@ import {setCount} from "./HomeController.js";
 $(document).ready(function() {
     $('#invoiceNo').val(generatePayID())
     loadOrderTable();
+    loadDateAndTime();
 });
 
+/*--------------------Load date and Time -------------------------*/
+function loadDateAndTime() {
+    const now = new Date();
+
+    const date = now.toISOString().split('T')[0];
+    $('#invoiceDate').val(date);
+
+    const time = now.toTimeString().split(' ')[0].substring(0,5);
+    $('#invoiceTime').val(time);
+}
 /*--------------------Search Customer In the DB--------------------------------*/
 $('#searchCustomer').on('click',function () {
     searchCustomer();
@@ -175,18 +186,19 @@ $('#addPayment').on('click',function () {
     let id = generatePayID()
     $('#invoiceNo').val(id);
     let date = $('#invoiceDate').val();
+    let time = $('#invoiceTime').val();
     let method = $('#paymentMethod').val();
     let total2 = $('#loadTotal').text();
     let total = parseFloat(total2);
 
-    if (id === '' || date === '' || method === '' || total<=0 || isNaN(total)){
+    if (id === '' || date === '' || time === '' || method === '' || total<=0 || isNaN(total)){
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
         });
     }else {
-        let payment_data = new PaymentModel(id,date,method,total);
+        let payment_data = new PaymentModel(id,date,time,method,total);
         payment_db.push(payment_data);
         resetPayment();
         Swal.fire({
@@ -194,7 +206,9 @@ $('#addPayment').on('click',function () {
             icon: "success",
             draggable: true
         });
+        console.log(payment_data)
     }
+    console.log(payment_db)
 });
 
 /*-------------Reset Payment----------------------*/
@@ -204,6 +218,7 @@ $('#resetPaymentDetails').on('click',function () {
 function resetPayment() {
     let id = generatePayID();
     $('#invoiceNo').val(id)
-    $('#invoiceDate, #paymentMethod, #loadTotal,#loadTotal').val('');
+    $('#paymentMethod, #loadTotal,#loadTotal').val('');
+    loadDateAndTime();
 }
 
