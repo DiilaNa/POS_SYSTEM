@@ -1,10 +1,10 @@
 import {customer_db,orders_db,item_db} from "../DB/db.js";
 
 $(document).ready(() => {
-    f();
+    setCount();
 });
 
-export function f() {
+export function setCount() {
     let customerCount = customer_db.length;
     $('#setCustomerCount').text(customerCount === 0 ? "0" : customerCount);
     let orderCount = orders_db.length;

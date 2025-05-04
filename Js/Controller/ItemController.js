@@ -1,5 +1,7 @@
 import {item_db} from "../DB/db.js";
 import ItemModel  from "../Model/ItemModel.js";
+import {setCount} from "./HomeController.js";
+
 
 /*---------------------Load Item ID When The Page is Loading-------------------*/
 $(document).ready(function() {
@@ -46,6 +48,7 @@ $('#item_save').on('click',function () {
         item_db.push(item_data);
         loadItem();
         clearForm();
+        setCount();
         Swal.fire({
             title: "Data Saved Successfully!",
             icon: "success",
