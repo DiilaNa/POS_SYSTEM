@@ -1,5 +1,6 @@
 import {customer_db} from "../DB/db.js";
 import CustomerModel  from "../Model/CustomerModel.js";
+import {f} from "./HomeController.js"
 
 /*---------------------Load Customer ID When The Page is Loading-------------------*/
 $(document).ready(function() {
@@ -57,6 +58,7 @@ $('#customer_save').on('click',function () {
         customer_db.push(customer_data);
         loadCustomers();
         clearForm();
+        f();
         Swal.fire({
             title: "Data Saved Successfully!",
             icon: "success",

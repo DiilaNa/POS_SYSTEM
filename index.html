@@ -76,7 +76,7 @@
                         <h1 class="card-title display-3 fw-bold text-center mb-4">Welcome!</h1>
                         <p class="card-text fs-4 text-center px-md-5">Here's a quick look at the number of customers, orders, and items in the system.</p>
                         <div class="text-center mt-4">
-                            <button class="btn btn-primary btn-lg px-4 py-2">Get Started</button>
+                            <button id="getStarted" class="btn btn-primary btn-lg px-4 py-2">Get Started</button>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                             <img src="img/Customers.jpeg" alt="Customers" class="stats-icon">
                         </div>
                         <h3 class="card-title fw-bold">Customers</h3>
-                        <p class="stats-number display-4 fw-bold text-primary mt-3 mb-0">123</p>
+                        <p id="setCustomerCount" class="stats-number display-4 fw-bold text-primary mt-3 mb-0">89</p>
                         <div class="progress mt-3" style="height: 8px;">
                             <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -110,7 +110,7 @@
                             <img src="img/Orders.jpeg" alt="Orders" class="stats-icon">
                         </div>
                         <h3 class="card-title fw-bold">Orders</h3>
-                        <p class="stats-number display-4 fw-bold text-success mt-3 mb-0">89</p>
+                        <p id="setOrdersCount" class="stats-number display-4 fw-bold text-success mt-3 mb-0">89</p>
                         <div class="progress mt-3" style="height: 8px;">
                             <div class="progress-bar bg-success" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -127,7 +127,7 @@
                             <img src="img/items.jpeg" alt="Items" class="stats-icon">
                         </div>
                         <h3 class="card-title fw-bold">Items</h3>
-                        <p class="stats-number display-4 fw-bold text-danger mt-3 mb-0">342</p>
+                        <p id="setItemCount" class="stats-number display-4 fw-bold text-danger mt-3 mb-0">342</p>
                         <div class="progress mt-3" style="height: 8px;">
                             <div class="progress-bar bg-danger" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -520,6 +520,7 @@
 <script type="module" src="Js/Controller/CustomerController.js"></script>
 <script type="module" src="Js/Controller/ItemController.js"></script>
 <script type="module" src="Js/Controller/OrderController.js"></script>
+<script type="module" src="Js/Controller/HomeController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
