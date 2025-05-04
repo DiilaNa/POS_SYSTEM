@@ -25,13 +25,13 @@ function loadCustomers() {
         let id = customer.customerID;
         let name = customer.customerName;
         let address = customer.address;
-        let salary = customer.customerSalary;
+        let phone = customer.customerPhone;
 
         let  data = `<tr>
                             <td>${id}</td>
                             <td>${name}</td>
                             <td>${address}</td>
-                            <td>${salary}</td>
+                            <td>${phone}</td>
                         </tr>`
         $('#customer-tbody').append(data);
 
@@ -44,16 +44,16 @@ $('#customer_save').on('click',function () {
     $('#customerId').val(id);
     let name = $('#customerName').val();
     let address = $('#customerAddress').val();
-    let salary = $('#customerSalary').val();
+    let phone = $('#customerPhone').val();
 
-    if (id === '' || name === '' || address === '' || salary === ''){
+    if (id === '' || name === '' || address === '' || phone === ''){
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
         });
     }else {
-        let customer_data = new CustomerModel(id,name,address,salary);
+        let customer_data = new CustomerModel(id,name,address,phone);
         customer_db.push(customer_data);
         loadCustomers();
         clearForm();
@@ -69,7 +69,7 @@ function clearForm() {
     $('#customerId').val(generateCustomerID());
     $('#customerName').val('');
     $('#customerAddress').val('');
-    $('#customerSalary').val('');
+    $('#customerPhone').val('');
 }
 $('#customer_reset').on('click',function () {
     clearForm();
@@ -83,12 +83,12 @@ $("#customer-tbody").on('click', 'tr', function(){
     let id = obj.customerID;
     let name = obj.customerName;
     let address = obj.address;
-    let salary = obj.customerSalary
+    let phone = obj.customerPhone;
 
     $("#customerId").val(id);
     $("#customerName").val(name);
     $("#customerAddress").val(address);
-    $("#customerSalary").val(salary);
+    $("#customerPhone").val(phone);
 });
 
 /*---------------Update Customer Details-------------------------------*/
@@ -96,9 +96,9 @@ $('#customer_update').on('click', function () {
     let id = $('#customerId').val();
     let name = $('#customerName').val();
     let address = $('#customerAddress').val();
-    let salary = $('#customerSalary').val();
+    let phone = $('#customerPhone').val();
 
-    if (id === '' || name === '' || address === '' || salary === '') {
+    if (id === '' || name === '' || address === '' || phone === '') {
         Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -113,7 +113,7 @@ $('#customer_update').on('click', function () {
     if (index !== -1) {
         customer_db[index].customerName = name;
         customer_db[index].address = address;
-        customer_db[index].customerSalary = salary;
+        customer_db[index].customerPhone = phone;
 
         loadCustomers();
         clearForm();

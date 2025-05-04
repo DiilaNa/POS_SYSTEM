@@ -30,7 +30,7 @@ function searchCustomer() {
         $('#loadCid').val(c.customerID);
         $('#loadCName').val(c.customerName);
         $('#loadCAddress').val(c.address);
-        $('#loadCSalary').val(c.customerSalary);
+        $('#loadCPhone').val(c.customerPhone);
     }else {
         Swal.fire({
             icon: "error",
@@ -45,7 +45,7 @@ function resetCustomer() {
     $('#loadCid').val('');
     $('#loadCName').val('');
     $('#loadCAddress').val('');
-    $('#loadCSalary').val('');
+    $('#loadCPhone').val('');
 }
 $('#resetCustomerDetails').on('click',function () {
     resetCustomer();
