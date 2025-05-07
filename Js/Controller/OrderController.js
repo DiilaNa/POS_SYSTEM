@@ -111,6 +111,7 @@ $('#addToOrder').on('click',function () {
 
     let itemID = $('#loadItemId').val();
     let itemName = $('#loadItemName').val();
+    let customerName = $('#loadCName').val();
     let price = parseFloat($('#loadItemPrice').val());
     let needQty = parseInt($('#quantity').val());
     let item = item_db.find(item => item.itemId === itemID )
@@ -135,7 +136,7 @@ $('#addToOrder').on('click',function () {
             let total = price*needQty;
             $('#loadTotal').text(total)
             loadItem();
-            let order_data = new OrderModel(itemName,needQty,price,total);
+            let order_data = new OrderModel(customerName,itemName,needQty,price,total);
             orders_db.push(order_data);
 
             loadOrderTable();
@@ -155,12 +156,14 @@ $('#addToOrder').on('click',function () {
 function loadOrderTable() {
     $('#order-body').empty();
     orders_db.map((order,index) => {
+        let customerName = order.customerName;
         let itemName = order.itemName;
         let qty = order.qty;
         let price = order.price;
         let total = order.total;
         let data = `<tr>
                             <td>${index + 1}</td>
+                            <td>${customerName}</td>
                             <td>${itemName}</td>
                             <td>${qty}</td>
                             <td>${price}</td>
