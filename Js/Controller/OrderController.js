@@ -166,7 +166,35 @@ function updateTotalAmount() {
     })
     $('#loadTotal').text(total)
 }
+/*--------------------Get Sub Total-----------------*/
+$('#discountAmount').on('input',function subTotal() {
+    let total = 0 ;
+    order_detail_db.forEach(entry => {
+        total += entry.total;
+    })
+    let discount = parseFloat($('#discountAmount').val())
 
+    if (isNaN(discount)) {
+        discount = 0;
+    }
+    let subTotal = total - discount;
+    $('#loadSubTotal').text(subTotal.toFixed(2));
+})
+/*--------------------LoadBalance---------------------*/
+$('#cashAmount').on('input',function () {
+    let cash = parseFloat($('#cashAmount').val());
+    let total = parseFloat($('#loadSubTotal').text());
+    console.log(cash +" is cash")
+    console.log(total + " is total")
+    if (isNaN(cash) || isNaN(total)) {
+        $('#balanceAmount').val("Invalid input");
+    } else {
+        console.log(cash + "" +total)
+        let balance = cash - total;
+        console.log(balance)
+        $('#balanceAmount').val(balance.toFixed(2));
+    }
+})
 
 /*---------------------Load table--------------------*/
 function loadOrderTable() {
@@ -193,7 +221,7 @@ function generatePayID() {
     if (payment_db.length === 0) {
         return "PAY001";
     }
-    // Get the last Item ID (assuming last added is at the end)
+
     let lastId = payment_db[payment_db.length - 1].payId;
     let numberPart = parseInt(lastId.substring(3));
     let newId = numberPart + 1;
@@ -204,7 +232,7 @@ function generateOrderID() {
     if (orders_db.length === 0) {
         return "OID-001";
     }
-    // Get the last Item ID (assuming last added is at the end)
+
     let lastId = orders_db[orders_db.length - 1].orderID;
     let numberPart = parseInt(lastId.substring(4));
     let newId = numberPart + 1;
