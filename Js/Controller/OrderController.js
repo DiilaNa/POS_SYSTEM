@@ -165,6 +165,7 @@ function updateTotalAmount() {
         total += entry.total;
     })
     $('#loadTotal').text(total)
+    $('#loadSubTotal').text(total)
 }
 /*--------------------Get Sub Total-----------------*/
 $('#discountAmount').on('input',function subTotal() {
@@ -184,14 +185,11 @@ $('#discountAmount').on('input',function subTotal() {
 $('#cashAmount').on('input',function () {
     let cash = parseFloat($('#cashAmount').val());
     let total = parseFloat($('#loadSubTotal').text());
-    console.log(cash +" is cash")
-    console.log(total + " is total")
+
     if (isNaN(cash) || isNaN(total)) {
         $('#balanceAmount').val("Invalid input");
     } else {
-        console.log(cash + "" +total)
         let balance = cash - total;
-        console.log(balance)
         $('#balanceAmount').val(balance.toFixed(2));
     }
 })
@@ -238,8 +236,8 @@ function generateOrderID() {
     let newId = numberPart + 1;
     return "OID-" + newId.toString().padStart(4, '0');
 }
-/*------------------------Save Payment-----------------------------*/
-$('#addPayment').on('click',function () {
+/*------------------------Place Order-----------------------------*/
+$('#placeOrder').on('click',function () {
     let id = generatePayID()
     $('#invoiceNo').val(id);
     let date = $('#invoiceDate').val();
@@ -247,6 +245,11 @@ $('#addPayment').on('click',function () {
     let method = $('#paymentMethod').val();
     let total2 = $('#loadTotal').text();
     let total = parseFloat(total2);
+
+    let orderID = $('#generateOrderId').val()
+    let customerID = $('#loadCid').text()
+    let paymentID = $('#invoiceNo').val()
+    let payAmount = $('#loadSubTotal').text()
 
     if (id === '' || date === '' || time === '' || method === '' || total<=0 || isNaN(total)){
         Swal.fire({
@@ -257,25 +260,29 @@ $('#addPayment').on('click',function () {
     }else {
         let payment_data = new PaymentModel(id,date,time,method,total);
         payment_db.push(payment_data);
-        resetPayment();
+        reset();
+
+        let order_data = new OrderModel(orderID,customerID,paymentID,payAmount);
+        orders_db.push(order_data);
+
         Swal.fire({
             title: "Data Saved Successfully!",
             icon: "success",
             draggable: true
         });
-        console.log(payment_data)
     }
-    console.log(payment_db)
 });
 
-/*-------------Reset Payment----------------------*/
+/*-------------Reset Payment/PlaceOrder----------------------*/
 $('#resetPaymentDetails').on('click',function () {
-    resetPayment();
+    reset();
 })
-function resetPayment() {
+function reset() {
     let id = generatePayID();
     $('#invoiceNo').val(id)
-    $('#paymentMethod, #loadTotal,#loadTotal').val('');
+    $('#paymentMethod,#cashAmount,#discountAmount').val('');
+    $('#loadSubTotal,#loadTotal').text('')
     loadDateAndTime();
+    $('#order-body').empty();
 }
 
