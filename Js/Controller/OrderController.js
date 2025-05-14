@@ -1,7 +1,7 @@
-import {item_db, orders_db, payment_db} from "../DB/db.js";
-import {customer_db} from "../DB/db.js";
+import {item_db, orders_db, payment_db,order_detail_db,customer_db} from "../DB/db.js";
 import {loadItem} from "./ItemController.js";
 import OrderDetailModel from "../Model/OrderDetailModel.js";
+import OrderModel  from "../Model/OrderModel.js";
 import PaymentModel from "../Model/PaymentModel.js";
 import {setCount} from "./HomeController.js";
 
@@ -110,12 +110,11 @@ $('#resetItemDetails').on('click',function () {
 
 /*----------------Save and Quantity Check---------------------------*/
 $('#addToOrder').on('click',function () {
-    let itemCode = $('#itemCode').val();
-    let itemID = $('#loadItemId').val();
+    let itemCode = $('#loadItemId').val();
     let itemName = $('#loadItemName').val();
     let price = parseFloat($('#loadItemPrice').val());
     let needQty = parseInt($('#quantity').val());
-    let item = item_db.find(item => item.itemId === itemID )
+    let item = item_db.find(item => item.itemId === itemCode)
 
     if (!item) {
         Swal.fire({
@@ -138,7 +137,7 @@ $('#addToOrder').on('click',function () {
             $('#loadTotal').text(total)
             loadItem();
             let order_data = new OrderDetailModel(itemCode,itemName,needQty,price,total);
-            orders_db.push(order_data);
+            order_detail_db.push(order_data);
 
             loadOrderTable();
             resetItem();
@@ -168,12 +167,12 @@ function updateQtyOnSameID() {
 /*---------------------Load table--------------------*/
 function loadOrderTable() {
     $('#order-body').empty();
-    orders_db.map((order,index) => {
-        let itemCode = order.itemCode;
-        let itemName = order.itemName;
-        let qty = order.qty;
-        let price = order.price;
-        let total = order.total;
+    order_detail_db.map((orderDetail,index) => {
+        let itemCode = orderDetail.itemCode;
+        let itemName = orderDetail.itemName;
+        let qty = orderDetail.qty;
+        let price = orderDetail.price;
+        let total = orderDetail.total;
         let data = `<tr>
                            <td>${itemCode}</td>
                            <td>${itemName}</td>
