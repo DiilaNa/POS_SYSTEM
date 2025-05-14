@@ -1,7 +1,7 @@
 import {item_db, orders_db, payment_db} from "../DB/db.js";
 import {customer_db} from "../DB/db.js";
 import {loadItem} from "./ItemController.js";
-import OrderModel from "../Model/OrderModel.js";
+import OrderDetailModel from "../Model/OrderDetailModel.js";
 import PaymentModel from "../Model/PaymentModel.js";
 import {setCount} from "./HomeController.js";
 
@@ -110,10 +110,9 @@ $('#resetItemDetails').on('click',function () {
 
 /*----------------Save and Quantity Check---------------------------*/
 $('#addToOrder').on('click',function () {
-    let orderID = $('#generateOrderId').val();
+    let itemCode = $('#itemCode').val();
     let itemID = $('#loadItemId').val();
     let itemName = $('#loadItemName').val();
-    let customerName = $('#loadCName').val();
     let price = parseFloat($('#loadItemPrice').val());
     let needQty = parseInt($('#quantity').val());
     let item = item_db.find(item => item.itemId === itemID )
@@ -138,7 +137,7 @@ $('#addToOrder').on('click',function () {
             let total = price*needQty;
             $('#loadTotal').text(total)
             loadItem();
-            let order_data = new OrderModel(orderID,customerName,itemName,needQty,price,total);
+            let order_data = new OrderDetailModel(itemCode,itemName,needQty,price,total);
             orders_db.push(order_data);
 
             loadOrderTable();
@@ -154,24 +153,34 @@ $('#addToOrder').on('click',function () {
         }
 })
 
+/*-------------------Update Qty On Same ID------------------------*/
+function updateQtyOnSameID() {
+    let orderId = $('#generateOrderId').val();
+    let qty = $('#quantity').val();
+
+    const c = orders_db.find(order => order.orderID === orderId);
+    if (c !== -1){
+        orders_db[c].itemQty = qty;
+    }
+}
+
+
 /*---------------------Load table--------------------*/
 function loadOrderTable() {
     $('#order-body').empty();
     orders_db.map((order,index) => {
-        let orderID = order.orderID;
-        let customerName = order.customerName;
+        let itemCode = order.itemCode;
         let itemName = order.itemName;
         let qty = order.qty;
         let price = order.price;
         let total = order.total;
         let data = `<tr>
-                            <td>${orderID}</td>
-                            <td>${customerName}</td>
-                            <td>${itemName}</td>
-                            <td>${qty}</td>
-                            <td>${price}</td>
-                             <td>${total}</td>
-                        </tr>`
+                           <td>${itemCode}</td>
+                           <td>${itemName}</td>
+                           <td>${qty}</td>
+                           <td>${price}</td>
+                            <td>${total}</td>
+                       </tr>`
         $('#order-body').append(data);
     })
 }
