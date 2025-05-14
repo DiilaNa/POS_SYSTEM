@@ -1,5 +1,6 @@
 export default class OrderModel{
-    constructor(customerName,itemName,qty,price,total) {
+    constructor(orderID,customerName,itemName,qty,price,total) {
+        this.orderID = orderID;
         this.customerName = customerName;
         this.itemName = itemName;
         this.qty = qty;

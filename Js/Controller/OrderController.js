@@ -8,6 +8,7 @@ import {setCount} from "./HomeController.js";
 /*-----------------Load Page---------------------------*/
 $(document).ready(function() {
     $('#invoiceNo').val(generatePayID())
+    $('#generateOrderId').val(generateOrderID())
     loadOrderTable();
     loadDateAndTime();
 });
@@ -53,6 +54,7 @@ function searchCustomer() {
 }
 /*--------------------Reset BTN in Customer---------------------------*/
 function resetCustomer() {
+    $('#generateOrderId').val(generateOrderID())
     $('#searchCustomerInput').val('');
     $('#loadCid').val('');
     $('#loadCName').val('');
@@ -108,7 +110,7 @@ $('#resetItemDetails').on('click',function () {
 
 /*----------------Save and Quantity Check---------------------------*/
 $('#addToOrder').on('click',function () {
-
+    let orderID = $('#generateOrderId').val();
     let itemID = $('#loadItemId').val();
     let itemName = $('#loadItemName').val();
     let customerName = $('#loadCName').val();
@@ -136,7 +138,7 @@ $('#addToOrder').on('click',function () {
             let total = price*needQty;
             $('#loadTotal').text(total)
             loadItem();
-            let order_data = new OrderModel(customerName,itemName,needQty,price,total);
+            let order_data = new OrderModel(orderID,customerName,itemName,needQty,price,total);
             orders_db.push(order_data);
 
             loadOrderTable();
@@ -156,13 +158,14 @@ $('#addToOrder').on('click',function () {
 function loadOrderTable() {
     $('#order-body').empty();
     orders_db.map((order,index) => {
+        let orderID = order.orderID;
         let customerName = order.customerName;
         let itemName = order.itemName;
         let qty = order.qty;
         let price = order.price;
         let total = order.total;
         let data = `<tr>
-                            <td>${index + 1}</td>
+                            <td>${orderID}</td>
                             <td>${customerName}</td>
                             <td>${itemName}</td>
                             <td>${qty}</td>
@@ -183,6 +186,17 @@ function generatePayID() {
     let numberPart = parseInt(lastId.substring(3));
     let newId = numberPart + 1;
     return "PAY" + newId.toString().padStart(3, '0');
+}
+/*--------------------------Generate next Order Id----------------------------*/
+function generateOrderID() {
+    if (orders_db.length === 0) {
+        return "ORD001";
+    }
+    // Get the last Item ID (assuming last added is at the end)
+    let lastId = orders_db[orders_db.length - 1].orderID;
+    let numberPart = parseInt(lastId.substring(3));
+    let newId = numberPart + 1;
+    return "ORD" + newId.toString().padStart(3, '0');
 }
 /*------------------------Save Payment-----------------------------*/
 $('#addPayment').on('click',function () {
