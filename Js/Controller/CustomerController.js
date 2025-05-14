@@ -8,6 +8,34 @@ $(document).ready(function() {
     loadCustomers();
 });
 
+/*------Real time Validation For input fields--------*/
+const namePattern = /^[A-Za-z\s]{3,}$/; // Only letters and spaces, at least 3 characters
+const addressPattern = /^[A-Za-z\s]{3,}$/;
+const phonePattern = /^(\+94|0)?7\d{8}$/; // Sri Lankan mobile format
+
+$('#customerName').on('input', function () {
+    if (!namePattern.test($(this).val())) {
+        $(this).addClass('is-invalid').removeClass('is-valid');
+    } else {
+        $(this).addClass('is-valid').removeClass('is-invalid');
+    }
+});
+
+$('#customerAddress').on('input', function () {
+    if (!addressPattern.test($(this).val())) {
+        $(this).addClass('is-invalid').removeClass('is-valid');
+    } else {
+        $(this).addClass('is-valid').removeClass('is-invalid');
+    }
+});
+$('#customerPhone').on('input', function () {
+    if (!phonePattern.test($(this).val())) {
+        $(this).addClass('is-invalid').removeClass('is-valid');
+    } else {
+        $(this).addClass('is-valid').removeClass('is-invalid');
+    }
+});
+
 /*--------------------------Generate next Customer Id----------------------------*/
 function generateCustomerID() {
     if (customer_db.length === 0) {
@@ -47,11 +75,11 @@ $('#customer_save').on('click',function () {
     let address = $('#customerAddress').val();
     let phone = $('#customerPhone').val();
 
-    if (id === '' || name === '' || address === '' || phone === ''){
+    if (!namePattern.test(name) || !addressPattern.test(address) || !phonePattern.test(phone)) {
         Swal.fire({
             icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
+            title: "Invalid Input",
+            text: "Please enter valid customer details.",
         });
     }else {
         let customer_data = new CustomerModel(id,name,address,phone);

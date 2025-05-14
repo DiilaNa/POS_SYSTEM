@@ -212,22 +212,25 @@
                 <div class="col-md-8">
                     <label for="customerName" class="form-label fw-bold">Customer Name</label>
                     <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-person"></i></span>
                         <input type="text" class="form-control" id="customerName" required>
+                        <div class="invalid-feedback">Enter a valid name (at least 3 letters).</div>
+                        <div class="valid-feedback">Looks good!</div>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <label for="customerAddress" class="form-label fw-bold">Address</label>
                     <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
                         <input type="text" class="form-control" id="customerAddress" required>
+                        <div class="invalid-feedback">Enter a valid Address (at least 3 letters).</div>
+                        <div class="valid-feedback">Looks good!</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <label for="customerPhone" class="form-label fw-bold">Contact No</label>
                     <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
                         <input type="tel" step="0.01" class="form-control" id="customerPhone" required>
+                        <div class="invalid-feedback">Enter a valid sri lankan phone number in this format (+94#########).</div>
+                        <div class="valid-feedback">Looks good!</div>
                     </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end gap-2 mt-4">
