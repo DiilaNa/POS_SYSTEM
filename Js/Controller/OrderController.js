@@ -12,7 +12,6 @@ $(document).ready(function() {
     loadOrderTable();
     loadDateAndTime();
 });
-
 /*--------------------Load date and Time -------------------------*/
 function loadDateAndTime() {
     const now = new Date();
@@ -258,13 +257,12 @@ $('#placeOrder').on('click',function () {
             text: "Something went wrong!",
         });
     }else {
-        let payment_data = new PaymentModel(id,date,time,method,total);
-        payment_db.push(payment_data);
-        reset();
-
         let order_data = new OrderModel(orderID,customerID,paymentID,payAmount);
         orders_db.push(order_data);
-
+        let payment_data = new PaymentModel(id,date,time,method,total);
+        payment_db.push(payment_data);
+        setCount();
+        reset();
         Swal.fire({
             title: "Data Saved Successfully!",
             icon: "success",
