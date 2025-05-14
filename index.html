@@ -510,8 +510,6 @@
                             <input type="time" class="form-control" id="invoiceTime" readonly style="max-width: 200px;">
                         </div>
                     </div>
-
-
                     <div class="col-md-12">
                         <label class="form-label fw-bold">Payment Method</label>
                         <select class="form-select" id="paymentMethod">
@@ -521,19 +519,28 @@
                             <option>Mobile Payment</option>
                         </select>
                     </div>
-                        <div class="d-flex justify-content-start gap-3" style="font-size:23px; font-weight: bolder">
-                            <label class="form-label fw-bold mt-3">Total Amount to Pay is :</label> <label id="loadTotal" class="form-label fw-bold mt-3"></label>
+                        <div class="d-flex justify-content-start gap-3" style="font-size:22px; font-weight: bolder">
+                            <label class="form-label fw-bold mt-3">Total Amount :</label> <label id="loadTotal" class="form-label fw-bold mt-3"></label>
                         </div>
-                        <div class="col-md-12 mt-3 d-flex justify-content-end gap-2">
+                        <div>
+                            <label class="form-label fw-bold mt-3" style="font-size: 23px; font-weight: bold">Sub Total :</label><label id="loadSubTotal" class="form-label fw-bold mt-3"></label>
+                        </div>
+                        <div>
+                            <label for="cashAmount"> Cash </label>
+                            <input type="text" id="cashAmount">
+                            <label for="discountAmount"> Discount</label>
+                            <input type="text" id="discountAmount">
+                            <label for="changeAmount">Balance</label>
+                            <input type="text" id="changeAmount">
+                        </div>
+                        <div class="col-md-12 mt-3 d-flex justify-content-end gap-3">
                             <button id="resetPaymentDetails" type="button" class="btn btn-secondary">Clear</button>
-                            <button id="addPayment" type="button" class="btn btn-primary">Add Payment</button>
+                            <button id="addPayment" type="button" class="btn btn-primary">Place Order</button>
                         </div>
                 </div>
             </form>
         </div>
     </div>
-
-
 </section>
 
 <script src="Lib/jquery-3.7.1.min.js"></script>
