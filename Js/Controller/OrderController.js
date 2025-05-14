@@ -131,36 +131,40 @@ $('#addToOrder').on('click',function () {
             title: "Oops...",
             text: "Not enough Quantity",
         });
-    } else {
-            item.itemQty -= needQty;
-            let total = price*needQty;
-            $('#loadTotal').text(total)
-            loadItem();
-            let order_data = new OrderDetailModel(itemCode,itemName,needQty,price,total);
-            order_detail_db.push(order_data);
+        return;
+    }
 
-            loadOrderTable();
-            resetItem();
-            resetCustomer();
-            setCount();
+    let index = order_detail_db.findIndex(item => item.itemCode === itemCode);
 
-            Swal.fire({
-                title: "Data Saved Successfully!",
-                icon: "success",
-                draggable: true
-            });
-        }
+    if (index !== -1){
+        order_detail_db[index].qty += needQty;
+        order_detail_db[index].total = order_detail_db[index].qty * order_detail_db[index].price;
+    }else {
+        let total = price*needQty;
+        let order_data = new OrderDetailModel(itemCode,itemName,needQty,price,total);
+        order_detail_db.push(order_data);
+    }
+    item.itemQty -= needQty;
+    loadItem();
+    loadOrderTable();
+    resetItem();
+    resetCustomer();
+    setCount();
+    updateTotalAmount();
+    Swal.fire({
+        title: "Data Saved Successfully!",
+        icon: "success",
+        draggable: true
+    });
 })
 
-/*-------------------Update Qty On Same ID------------------------*/
-function updateQtyOnSameID() {
-    let orderId = $('#generateOrderId').val();
-    let qty = $('#quantity').val();
-
-    const c = orders_db.find(order => order.orderID === orderId);
-    if (c !== -1){
-        orders_db[c].itemQty = qty;
-    }
+/*-------------------Get Total Amount------------------------*/
+function updateTotalAmount() {
+    let total = 0 ;
+    order_detail_db.forEach(entry => {
+        total += entry.total;
+    })
+    $('#loadTotal').text(total)
 }
 
 
