@@ -8,6 +8,35 @@ $(document).ready(function() {
     $('#itemCode').val(generateItemID());
     loadItem();
 });
+/*--------regex ---------------*/
+const namePattern = /^[A-Za-z\s]{3,}$/;
+const qtyPattern = /^[1-9]\d*$/;
+const pricePattern = /^(?:[1-9]\d*|0)?(?:\.\d{1,2})?$/;
+
+$('#itemName').on('input',function () {
+    if (!namePattern.test($(this).val())){
+        $(this).addClass('is-invalid').removeClass('is-valid');
+    }else {
+        $(this).addClass('is-valid').removeClass('is-invalid');
+    }
+});
+
+$('#itemQuantity').on('input',function () {
+    if (!qtyPattern.test($(this).val())){
+        $(this).addClass('is-invalid').removeClass('is-valid');
+    }else {
+        $(this).addClass('is-valid').removeClass('is-invalid');
+    }
+});
+
+$('#itemPrice').on('input',function () {
+    if (!pricePattern.test($(this).val())){
+        $(this).addClass('is-invalid').removeClass('is-valid');
+    }else {
+        $(this).addClass('is-valid').removeClass('is-invalid');
+    }
+});
+
 
 /*-----------------------Load Table Data--------------------------------------------*/
 export function loadItem() {
@@ -37,10 +66,10 @@ $('#item_save').on('click',function () {
     let qty = $('#itemQuantity').val();
     let price = $('#itemPrice').val();
 
-    if (id === '' || name === '' || qty === '' || price === ''){
+    if (!namePattern.test(name) || !qtyPattern.test(qty) || !pricePattern.test(price)){
         Swal.fire({
             icon: "error",
-            title: "Oops...",
+            title: "Invalid Input...",
             text: "Something went wrong!",
         });
     }else {
@@ -72,9 +101,9 @@ function generateItemID() {
 /*---------------------------Clear data in the form--------------------------------------------*/
 function clearForm() {
     $('#itemCode').val(generateItemID());
-    $('#itemName').val('');
-    $('#itemQuantity').val('');
-    $('#itemPrice').val('');
+    $('#itemName').val('').removeClass('is-valid is-invalid');
+    $('#itemQuantity').val('').removeClass('is-valid is-invalid');
+    $('#itemPrice').val('').removeClass('is-valid is-invalid');
 }
 $('#item_reset').on('click',function () {
     clearForm();
@@ -102,7 +131,7 @@ $('#item_update').on('click', function () {
     let qty = $('#itemQuantity').val();
     let price = $('#itemPrice').val();
 
-    if (id === '' || name === '' || qty === '' || price === '') {
+    if (!namePattern.test(name) || !qtyPattern.test(qty) || !pricePattern.test(price)) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
