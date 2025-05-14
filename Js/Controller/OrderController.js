@@ -190,13 +190,13 @@ function generatePayID() {
 /*--------------------------Generate next Order Id----------------------------*/
 function generateOrderID() {
     if (orders_db.length === 0) {
-        return "ORD001";
+        return "OID-001";
     }
     // Get the last Item ID (assuming last added is at the end)
     let lastId = orders_db[orders_db.length - 1].orderID;
-    let numberPart = parseInt(lastId.substring(3));
+    let numberPart = parseInt(lastId.substring(4));
     let newId = numberPart + 1;
-    return "ORD" + newId.toString().padStart(3, '0');
+    return "OID-" + newId.toString().padStart(4, '0');
 }
 /*------------------------Save Payment-----------------------------*/
 $('#addPayment').on('click',function () {
