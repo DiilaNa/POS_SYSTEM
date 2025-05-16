@@ -161,6 +161,11 @@ function setDisableCustomer() {
     $('#resetCustomerDetails').prop('disabled',true);
     $('#searchCustomerInput').prop('readonly',true);
 }
+function setEnableCustomer() {
+    $('#searchCustomer').prop('disabled',false);
+    $('#resetCustomerDetails').prop('disabled',false);
+    $('#searchCustomerInput').prop('readonly',false);
+}
 
 /*-------------------Get Total Amount------------------------*/
 function updateTotalAmount() {
@@ -283,7 +288,7 @@ $('#placeOrder').on('click',function () {
         payment_db.push(payment_data);
         setCount();
         reset();
-        // setEnableCustomer();
+        setEnableCustomer();
         resetCustomer();
         Swal.fire({
             title: "Data Saved Successfully!",
