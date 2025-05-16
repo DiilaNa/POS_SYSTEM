@@ -145,8 +145,9 @@ $('#addToOrder').on('click',function () {
     }
     item.itemQty -= needQty;
     loadItem();
+    setDisableCustomer();
+    resetItem();
     loadOrderTable();
-    setCount();
     updateTotalAmount();
     Swal.fire({
         title: "Data Saved Successfully!",
@@ -154,6 +155,12 @@ $('#addToOrder').on('click',function () {
         draggable: true
     });
 })
+/*-------------------------Customer Form BTN changing--------------------------------*/
+function setDisableCustomer() {
+    $('#searchCustomer').prop('disabled',true);
+    $('#resetCustomerDetails').prop('disabled',true);
+    $('#searchCustomerInput').prop('readonly',true);
+}
 
 /*-------------------Get Total Amount------------------------*/
 function updateTotalAmount() {
@@ -244,7 +251,7 @@ $('#placeOrder').on('click',function () {
     let total = parseFloat(total2);
 
     let orderID = $('#generateOrderId').val()
-    let customerID = $('#loadCid').text()
+    let customerID = $('#loadCid').val()
     let paymentID = $('#invoiceNo').val()
     let payAmount = $('#loadSubTotal').text()
 
@@ -276,6 +283,8 @@ $('#placeOrder').on('click',function () {
         payment_db.push(payment_data);
         setCount();
         reset();
+        // setEnableCustomer();
+        resetCustomer();
         Swal.fire({
             title: "Data Saved Successfully!",
             icon: "success",
