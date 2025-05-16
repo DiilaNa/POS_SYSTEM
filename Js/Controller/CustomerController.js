@@ -1,6 +1,6 @@
 import {customer_db} from "../DB/db.js";
 import CustomerModel  from "../Model/CustomerModel.js";
-import {setCount} from "./HomeController.js"
+import {setCount} from "./MainController.js"
 
 /*---------------------Load Customer ID When The Page is Loading-------------------*/
 $(document).ready(function() {

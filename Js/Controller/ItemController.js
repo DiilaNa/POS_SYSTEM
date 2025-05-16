@@ -1,6 +1,6 @@
 import {item_db} from "../DB/db.js";
 import ItemModel  from "../Model/ItemModel.js";
-import {setCount} from "./HomeController.js";
+import {setCount} from "./MainController.js";
 
 
 /*---------------------Load Item ID When The Page is Loading-------------------*/

@@ -3,7 +3,7 @@ import {loadItem} from "./ItemController.js";
 import OrderDetailModel from "../Model/OrderDetailModel.js";
 import OrderModel  from "../Model/OrderModel.js";
 import PaymentModel from "../Model/PaymentModel.js";
-import {setCount} from "./HomeController.js";
+import {setCount} from "./MainController.js";
 
 /*-----------------Load Page---------------------------*/
 $(document).ready(function() {
