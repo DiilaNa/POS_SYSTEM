@@ -107,7 +107,7 @@ $('#resetItemDetails').on('click',function () {
     resetItem();
 })
 
-/*----------------Save and Quantity Check---------------------------*/
+/*----------------Add to Order / OrderDetails---------------------------*/
 $('#addToOrder').on('click',function () {
     let itemCode = $('#loadItemId').val();
     let itemName = $('#loadItemName').val();
@@ -146,8 +146,6 @@ $('#addToOrder').on('click',function () {
     item.itemQty -= needQty;
     loadItem();
     loadOrderTable();
-    resetItem();
-    resetCustomer();
     setCount();
     updateTotalAmount();
     Swal.fire({
@@ -250,11 +248,26 @@ $('#placeOrder').on('click',function () {
     let paymentID = $('#invoiceNo').val()
     let payAmount = $('#loadSubTotal').text()
 
-    if (id === '' || date === '' || time === '' || method === '' || total<=0 || isNaN(total)){
+    console.log(id)
+    console.log(date)
+    console.log(time)
+    console.log(method)
+    console.log(total2)
+    console.log(
+        total,
+    )
+    console.log(
+        orderID,
+        customerID,
+        paymentID,
+        payAmount
+    )
+
+    if (orderID === '' || customerID === '' || paymentID === '' || payAmount === '' || id === '' || date === '' || time === '' || method === '' || total<=0 || isNaN(total)){
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Something went wrong!",
+            text: "Fill All Data!",
         });
     }else {
         let order_data = new OrderModel(orderID,customerID,paymentID,payAmount);
@@ -279,7 +292,7 @@ function reset() {
     let id = generatePayID();
     $('#invoiceNo').val(id)
     $('#paymentMethod,#cashAmount,#discountAmount').val('');
-    $('#loadSubTotal,#loadTotal').text('')
+    $('#loadSubTotal,#loadTotal,#balanceAmount').text('')
     loadDateAndTime();
     $('#order-body').empty();
 }
