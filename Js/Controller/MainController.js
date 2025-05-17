@@ -12,9 +12,11 @@ $(document).ready(function () {
         $("section").not("#headerSection-container").hide(); // Hide all other sections
         $(target).show(); // Show the target section
     });
-});
 
-$(document).ready(() => {
+    $('#getStarted').click(function () {
+        $("section").not("#headerSection-container").hide();
+        $("#customerSection").show();
+    })
     setCount();
 });
 
