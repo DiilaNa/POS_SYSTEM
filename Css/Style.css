@@ -1,10 +1,15 @@
-/*Home Section*/
 #count-section .card {
-    background-color: #8af38a;
+    background-color: #3aff3a;
     transition: transform 0.3s ease;
 }
 #count-section .card:hover {
     transform: translateY(-5px);
+}
+.card-bordered{
+    border: 2px solid #858585;
+    box-shadow: inset 6px 6px 10px rgba(0, 0, 0, 0.2),
+    inset -4px -4px 8px rgba(92, 89, 89, 0.7);
+    border-radius: 11px; box-sizing: border-box;
 }
 .section-icon {
     width: 55px;
