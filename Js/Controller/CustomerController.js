@@ -90,7 +90,11 @@ $('#customer_save').on('click',function () {
         Swal.fire({
             title: "Data Saved Successfully!",
             icon: "success",
-            draggable: true
+            draggable: true,
+            timerProgressBar: true,
+            position: 'center',
+            background: '#ffffff',
+            iconColor: '#00a30a'
         });
     }
 });
