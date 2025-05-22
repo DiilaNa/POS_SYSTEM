@@ -146,7 +146,6 @@ $('#addToOrder').on('click',function () {
     item.itemQty -= needQty;
     loadItem();
     setDisableCustomer();
-    resetItem();
     loadOrderTable();
     updateTotalAmount();
     Swal.fire({
@@ -257,32 +256,29 @@ $('#placeOrder').on('click',function () {
 
     let orderID = $('#generateOrderId').val()
     let customerID = $('#loadCid').val()
-    let paymentID = $('#invoiceNo').val()
+    let customerName = $('#loadCName').val()
+    let itemName = $('#loadItemName').val()
+    let qty = $('#loadItemQty').val()
     let payAmount = $('#loadSubTotal').text()
 
-    console.log(id)
-    console.log(date)
-    console.log(time)
-    console.log(method)
-    console.log(total2)
-    console.log(
-        total,
-    )
-    console.log(
-        orderID,
-        customerID,
-        paymentID,
-        payAmount
-    )
-
-    if (orderID === '' || customerID === '' || paymentID === '' || payAmount === '' || id === '' || date === '' || time === '' || method === '' || total<=0 || isNaN(total)){
+    if (orderID === '' || customerName === '' || itemName === '' || qty === '' || payAmount === '' || method === '' || id === '' || time === '' || method === '' || total<=0 || isNaN(total)){
+       /* console.log(orderID)
+        console.log(customerID)
+        console.log(customerName)
+        console.log(itemName)
+        console.log(qty)
+        console.log(payAmount)
+        console.log(method)
+        console.log(id)
+        console.log(time)
+        console.log(method)*/
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Fill All Data!",
         });
     }else {
-        let order_data = new OrderModel(orderID,customerID,paymentID,payAmount);
+        let order_data = new OrderModel(orderID,customerName,itemName,qty,payAmount,method);
         orders_db.push(order_data);
         let payment_data = new PaymentModel(id,date,time,method,total);
         payment_db.push(payment_data);
@@ -290,6 +286,7 @@ $('#placeOrder').on('click',function () {
         reset();
         setEnableCustomer();
         resetCustomer();
+        loadAllOrdersTable();
         Swal.fire({
             title: "Data Saved Successfully!",
             icon: "success",
@@ -309,5 +306,28 @@ function reset() {
     $('#loadSubTotal,#loadTotal,#balanceAmount').text('')
     loadDateAndTime();
     $('#order-body').empty();
+}
+
+/*----------Order Details  Table-------------------------------*/
+function loadAllOrdersTable() {
+    $('#viewOrders').empty();
+    orders_db.map((order,index) => {
+        let orderID = order.orderID;
+        let customerName = order.customerName;
+        let itemName = order.itemName;
+        let qty = order.qty;
+        let method = order.method;
+        let amount = order.amount;
+        let data = `<tr>
+                           <td>${orderID}</td>
+                           <td>${customerName}</td>
+                           <td>${itemName}</td>
+                           <td>${qty}</td>
+                            <td>${method}</td>
+                           <td>${amount}</td>
+                          
+                       </tr>`
+        $('#viewOrders').append(data);
+    })
 }
 

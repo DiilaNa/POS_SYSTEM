@@ -6,6 +6,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="Css/Style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+
 </head>
 <body>
 <section id="headerSection-container">
@@ -35,7 +39,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#customerSection">Customers</a></li>
-                          <!--  <li><a class="dropdown-item" href="#">Setting</a></li>-->
+                            <li><a class="dropdown-item" href="#viewOrdersSection">View Orders</a></li>
                             <li><a class="dropdown-item" href="#aboutSection">About</a></li>
                         </ul>
                     </li>
@@ -73,7 +77,8 @@
                         <h1 class="card-title display-3 fw-bold text-center mb-4">Welcome!</h1>
                         <p class="card-text fs-4 text-center px-md-5">Here's a quick look at the number of customers, orders, and items in the system.</p>
                         <div class="text-center mt-4">
-                            <button id="getStarted" class="btn btn-primary btn-lg px-4 py-2">Get Started</button>
+                            <button id="getStarted" class="btn btn-primary btn-lg px-4 py-2">
+                                <i class="fas fa-rocket me-2"></i> Get Started</button>
                         </div>
                     </div>
                 </div>
@@ -231,7 +236,8 @@
                     </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end gap-2 mt-4">
-                    <button id="customer_reset" class="btn btn-secondary" type="button">Clear</button>
+                    <button id="customer_reset" class="btn btn-secondary" type="button">
+                        <i class="fas fa-sync-alt"></i> Clear</button>
                     <button id="customer_save" class="btn btn-success" type="button">
                         <i class="bi bi-save"></i> Save
                     </button>
@@ -311,7 +317,8 @@
                     </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end gap-2 mt-4">
-                    <button id="item_reset" class="btn btn-secondary" type="button">Clear</button>
+                    <button id="item_reset" class="btn btn-secondary" type="button">
+                        <i class="fas fa-sync-alt"></i> Clear</button>
 
                     <button id="item_save" class="btn btn-success" type="button">
                         <i class="bi bi-save"></i> Save
@@ -373,8 +380,10 @@
                             <input type="text" class="form-control" id="searchCustomerInput" placeholder="Enter ID">
                         </div>
                         <div class="d-flex justify-content-end gap-3 mb-3">
-                            <button id="searchCustomer" class="btn btn-primary" type="button" >Search</button>
-                            <button id="resetCustomerDetails" class="btn btn-outline-secondary" type="button">Reset</button>
+                            <button id="searchCustomer" class="btn btn-primary" type="button" >
+                                <i class="fas fa-search"></i> Search</button>
+                            <button id="resetCustomerDetails" class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-sync-alt"></i> Reset</button>
                         </div>
                         <div id="loadCustomerIdInOrder mb-3">
                             <div class="row mb-2">
@@ -421,8 +430,9 @@
                             <input  id="itemIDInput" type="text" class="form-control" placeholder="Enter ID">
                         </div>
                         <div class="d-flex justify-content-end gap-3 mb-3">
-                            <button id="resetItemDetails" class="btn btn-outline-secondary" type="button">Reset</button>
-                            <button id="searchItem" class="btn btn-primary" type="button"> <!--onclick="searchItem()"-->Search</button>
+                            <button id="resetItemDetails" class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-sync-alt"></i> Reset</button>
+                            <button id="searchItem" class="btn btn-primary" type="button">  <i class="fas fa-search"></i>Search</button>
                         </div>
 
                         <div id="loadOrderIdInOrder">
@@ -456,7 +466,8 @@
                             <label class="form-label fw-bold">Quantity</label>
                             <input type="number" class="form-control" id="quantity">
                         </div>
-                        <button id="addToOrder" type="button" class="btn btn-success w-100">Add to Order</button>
+                        <button id="addToOrder" type="button" class="btn btn-success w-100">
+                            <i class="fas fa-cart-plus me-2"></i> Add to Order</button>
                     </form>
                 </div>
             </div>
@@ -531,14 +542,45 @@
                             <input type="text" id="discountAmount">
                         </div>
                         <div class="col-md-12 mt-3 d-flex justify-content-end gap-3">
-                            <button id="resetPaymentDetails" type="button" class="btn btn-secondary">Clear</button>
-                            <button id="placeOrder" type="button" class="btn btn-primary">Place Order</button>
+                            <button id="resetPaymentDetails" type="button" class="btn btn-secondary">
+                                <i class="fas fa-sync-alt"></i> Clear</button>
+                            <button id="placeOrder" type="button" class="btn btn-primary">
+                                <i class="fas fa-file-invoice-dollar me-2"></i>  Place Order</button>
                         </div>
                 </div>
             </form>
         </div>
     </div>
 </section>
+<section id="viewOrdersSection" class="container py-5">
+    <!-- Section Title -->
+    <div class="d-flex align-items-center mb-4">
+        <img src="img/Orders.jpeg" alt="Order Details" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
+        <h1 class="mb-0">View Orders</h1>
+    </div>
+
+    <!-- Order Details Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Payment Method</th>
+                <th>Pay Amount</th>
+            </tr>
+            </thead>
+            <tbody id="viewOrders">
+            <!-- This section will be dynamically populated with order detail rows -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
 
 <script src="Lib/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
