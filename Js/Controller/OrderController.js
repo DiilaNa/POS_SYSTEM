@@ -310,19 +310,18 @@ function reset() {
 
 /*----------Order Details  Table-------------------------------*/
 function loadAllOrdersTable() {
-    $('#viewOrders').empty();
+    $('#v').empty();
     orders_db.map((order,index) => {
         let orderID = order.orderID;
         let customerName = order.customerName;
-        let itemName = order.itemName;
-        let qty = order.qty;
+      /*  let itemName = order.itemName;
+        let qty = order.qty;*/
         let method = order.method;
         let amount = order.amount;
         let data = `<tr>
                            <td>${orderID}</td>
                            <td>${customerName}</td>
-                           <td>${itemName}</td>
-                           <td>${qty}</td>
+                        
                             <td>${method}</td>
                            <td>${amount}</td>
                           
